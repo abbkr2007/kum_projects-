@@ -1,0 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: [example.com] Please Confirm Your E-mail Address
+From: webmaster@localhost
+To: remal56589@zuperholo.com
+Date: Mon, 05 Oct 2020 20:32:11 -0000
+Message-ID: <160192993108.6176.4484871051162956743@Ghost>
+
+Hello from example.com!
+
+You're receiving this e-mail because user remal56589@zuperholo.com has given yours as an e-mail address to connect their account.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/Mg:1kPX9X:Mj_vQGp3KpwZ6vwVcz1gODrli6tkqFF5L9u9XdJw2b8/
+
+Thank you from example.com!
+example.com
+-------------------------------------------------------------------------------

@@ -1,0 +1,78 @@
+.bg_ab{
+    background-image:url('../assets/img/bg_b.jpg');
+    background-repeat:repeat;
+}
+.i_ab_style{
+    background: #f6f6f6;
+margin-bottom: 20px;
+width: 390px;
+height: 55px;
+line-height: 40px;
+padding: 0 15px;
+border-radius: 3px;
+border: 1px solid #DFDFDF;
+outline: none;
+color: #1d4ca1;
+font-size: 13px;
+}
+
+.i_ab_style::placeholder{
+    color:#1d4ca1;
+}
+
+.s_ab{
+    background: #1d4ca1;
+width: 100px;
+height: 33px;
+line-height: 30px;
+padding: 0 15px;
+border-radius: 3px;
+border: 1px solid #1d4ca1;
+outline: none;
+color: #FFF;
+font-weight: 700;
+}
+.s2_ab{
+    display: block;
+
+font-size: 12px;
+}
+
+.u_ab{
+   width: 100%;
+margin-top: 25px;
+text-align: center;
+display: block;
+padding: 0; 
+}
+
+.login100-itle {
+    
+
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+  
+    display: block;
+  }
+
+.li_ab{
+    /* list-style: none;
+float: left;
+width: 140px; */
+padding: 10px;
+margin-right: 10px;
+}
+.a_ab{
+    color: #1d4ca1;
+text-decoration: none;
+}
+.a_ab:hover{
+    color: #1d4ca1;
+}
+
+.i_ab{
+    color: #1d4ca1;
+font-size: 18px;
+margin: 5px 5px 0 0;
+}
