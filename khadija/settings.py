@@ -26,10 +26,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'sis',
+    'pis',
+    'hr',
+    'accounts',
+    
     'student',
     'stuser',
+    'dashboard',
 
-    'django_rename_app',
 
     'django.contrib.sites',
     'allauth',
@@ -138,7 +143,7 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = 'app:index'
 
 ACCOUNT_LOGOUT_REDIRECT_URL ="/accounts/login"
-
+ACCOUNT_LOGOUT_ON_GET = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_SESSION_REMEMBER = True # new
@@ -146,6 +151,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
 
 
 

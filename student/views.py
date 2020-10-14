@@ -2,13 +2,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth.decorators import login_required
 
 
 class IndexView(generic.TemplateView):
 
     template_name = 'index.html'
-
 
 def home(request):
     if request.user.is_authenticated:

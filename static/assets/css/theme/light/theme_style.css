@@ -574,15 +574,15 @@ body {
     top: 0px;
 }
 .page-header.navbar {
-    background: #193650;
+    background: #FFFFFf;
 }
 .page-header.navbar .page-logo {
     float: left;
     display: block;
-    width: 235px;
+    /* width: 235px; */
     height: 60px;
-    padding: 10px 20px 0px 30px;
-    background: #222c3c;
+   
+    background: #ffffff;
 }
 .logo-icon{
 	font-size: 35px !important;

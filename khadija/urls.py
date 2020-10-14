@@ -7,8 +7,14 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('', include('student.urls', namespace='app')),
+    path('stu/', include('student.urls', namespace='app')),
     
+    path('', include('dashboard.urls',)),
+    
+    path('account/', include('accounts.urls', namespace='account')),
+    path('hr/', include('hr.urls', namespace='hr')),
+    path('lecturer/', include('pis.urls', namespace='lecturer')),
+    path('student/', include('sis.urls', namespace='student')),
 
     path('stuser/', include('stuser.urls')),
     
