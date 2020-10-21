@@ -17,8 +17,8 @@ GENDER = [
 
 
 class Student(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='active')
     registration_number   = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=40)
@@ -36,10 +36,15 @@ class Student(models.Model):
     def __str__(self):
         return self.registration_number
 
+    def get_name(self):
+        return (f'{self.first_name +" " + " "+ self.middle_name +" " + " "+  self.last_name}')
+
+
     def get_absolute_url(self):
         return reverse('student:sudent_detail', kwargs={
             'pk': self.pk
         })
+        
     def get_update_url(self):
         return reverse('student:student_edit', kwargs={
             'pk': self.pk
@@ -56,8 +61,21 @@ Current_STATUS = [
       ('regular', 'Regular'),
       ('irregular ', 'Irregular ')
   ]
-  
+
+
+class SessionYearModel(models.Model):
+    session_start_year = models.DateField()
+    session_end_year = models.DateField()
+
+class Semester_Session(models.Model):
+    name = models.CharField(max_length=100)
+    session_start= models.DateField()
+    session_end = models.DateField()
+
+
 class CurrentStatus(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.SET_NULL, null=True)
     current_status = models.CharField(max_length=10, choices=Current_STATUS)
     # adviser
     # payment_status
@@ -72,14 +90,56 @@ class CurrentStatus(models.Model):
         verbose_name = 'CurrentStatus'
         verbose_name_plural = 'CurrentStatuss'
 
+        
+Subject_Status = [
+      ('available', 'Available'),
+      ('unavailable', 'Unavailable')
+  ]
+
+
+class Subject(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=50)
+    code = models.PositiveIntegerField(unique=True)
+    credit = models.IntegerField(blank=True)
+    files = models.FileField(upload_to='course/materials/', blank=True)
+    status = models.CharField(max_length=20, choices=Subject_Status, blank=True)
+
+    def __str__(self):
+        return self.name
+        
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Subject'
+        verbose_name_plural = 'Subjects'
+
+
+
 
 
 class Course(models.Model):
+    # tracking student course 
+    # also tracking course result by the student 
+
+    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, unique=True)
     prefix = models.CharField(max_length=20)
     code = models.CharField(max_length=20)
+
     subject = models.ManyToManyField('Subject', related_name='subject_list', blank=True)
+
+    # result of student by the courses
+    faield = models.ManyToManyField(Subject,related_name='failed_subject_status', blank=True)
+    passed = models.ManyToManyField(Subject,related_name='passed_subject_status', blank=True)
+    nerver = models.ManyToManyField(Subject,related_name='never_subject_status', blank=True)
+    current = models.ManyToManyField(Subject,related_name='curent_subject_status', blank=True)
+    
+
     program = models.ForeignKey('Program', related_name='program_course', on_delete=models.CASCADE, blank=True, null=True)
+    
     
 
     def __str__(self):
@@ -98,7 +158,10 @@ class Course(models.Model):
         verbose_name_plural = 'Courses'
 
 
+
 class Program(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, unique=True)
     prefix = models.CharField(max_length=20)
     code = models.CharField(max_length=20)
@@ -120,7 +183,10 @@ class Program(models.Model):
         verbose_name = 'Program'
         verbose_name_plural = 'Programs'
 
+
 class Department(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, unique=True)
     prefix = models.CharField(max_length=20)
     code = models.CharField(max_length=20)
@@ -144,11 +210,20 @@ class Department(models.Model):
 
  
 
-
 class Semester(models.Model):
+
     name = models.CharField(max_length=50)
-    code = models.PositiveIntegerField(unique=True)
-    # advior
+    department = models.ForeignKey(Department, on_delete=models.SET_NULL, related_name='semester_dept', blank=True, null=True)
+    program = models.ForeignKey(Program, on_delete=models.SET_NULL, related_name='semester_program', blank=True, null=True)
+    # course = models.ForeignKey(Course, related_name='semester_course', on_delete=models.SET_NULL, blank=True, null=True)
+
+    course = models.ManyToManyField(Course, related_name='semester_course', blank=True)
+
+    student = models.ManyToManyField(Student, related_name='semester_student', blank=True)
+
+    session = models.ForeignKey(Semester_Session, on_delete=models.SET_NULL, related_name='semester_program', blank=True, null=True)
+    code = models.CharField(max_length=40)
+    advisor = models.ForeignKey(to='pis.Lecturer', on_delete=models.SET_NULL, related_name='semester_advisor', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -161,21 +236,9 @@ class Semester(models.Model):
 
 
 
-class Subject(models.Model):
-    name = models.CharField(max_length=50)
-    code = models.PositiveIntegerField(unique=True)
-    credit = models.IntegerField(blank=True)
-    files = models.FileField(upload_to='course/materials/', blank=True)
+ 
 
-    def __str__(self):
-        return self.name
-        
 
-    class Meta:
-        db_table = ''
-        managed = True
-        verbose_name = 'Subject'
-        verbose_name_plural = 'Subjects'
 
 
 class Result_Of_Semester(models.Model):
@@ -220,16 +283,90 @@ class My_Attendance(models.Model):
         verbose_name_plural = 'Attendances'
 
 
-class Notice(models.Model):
-    pass
+class Notice_Files(models.Model):
+
+    name = models.CharField(max_length=100, blank=True)
+    files = models.FileField(upload_to='rules/rule/', blank=True)
 
     def __str__(self):
-        pass
+        return self.name
+   
+
+
+class Notice(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    handbook = models.ManyToManyField(Notice_Files, related_name='handbook_file', blank=True)
+    rule = models.ManyToManyField(Notice_Files, related_name='rules_file', blank=True)
+    records_forms = models.ManyToManyField(Notice_Files, related_name='records_file', blank=True)
+    policy = models.ManyToManyField(Notice_Files, related_name='policies_file', blank=True)
+    def __str__(self):
+        return self.name
+        
 
     class Meta:
         db_table = ''
         managed = True
         verbose_name = 'Notice'
         verbose_name_plural = 'Notices'
+
+
+
+
+
+
+
+
+# class ProgramStructure(models.Model):
+#     user = models.ForeignKey(
+#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+#     department = models.ForeignKey('Department',related_name='department_status', on_delete=models.CASCADE, blank=True, null=True)
+#     program = models.ForeignKey('Program',related_name='pogram_status', on_delete=models.CASCADE, blank=True, null=True)
+#     course = models.ForeignKey('Course',related_name='course_status', on_delete=models.CASCADE, blank=True, null=True)
+
+#     faield = models.ManyToManyField(Subject,related_name='failed_subject_status', blank=True)
+#     passed = models.ManyToManyField(Subject,related_name='passed_subject_status', blank=True)
+#     nerver = models.ManyToManyField(Subject,related_name='never_subject_status', blank=True)
+#     current = models.ManyToManyField(Subject,related_name='curent_subject_status', blank=True)
+    
+#     def __str__(self):
+#         return str(self.user)
+
+#     class Meta:
+#         db_table = ''
+#         managed = True
+#         verbose_name = 'ProgramStructure'
+#         verbose_name_plural = 'ProgramStructures'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

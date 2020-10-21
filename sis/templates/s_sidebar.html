@@ -37,28 +37,15 @@
 								
 							</li>
 
-							<li class="nav-item active open">
-
-						
-
+							<li class="nav-item">
 								<a href="#" class="nav-link nav-toggle"><i class="material-icons">group</i>
-									<span class="title">Students</span><span class="selected"></span>
-									<span class="arrow open"></span>
+									<span class="title">Students</span>
+									<span class="arrow"></span>
 								</a>
 								<ul class="sub-menu">
 
-									<!-- <li class="nav-item">
-										<a href="all_students.html" class="nav-link "> <span class="title">All
-												Students</span>
-										</a>
-									</li> -->
-									<!-- <li class="nav-item">
-										<a href="add_student.html" class="nav-link "> <span class="title">Add
-												Student</span>
-										</a>
-									</li> -->
 
-									<li class="nav-item active">
+									<li class="nav-item">
 										<a href="{% url 'student:profile' %}" class="nav-link "> <span class="title">
 												Profile</span>
 											<span class="selected"></span>
@@ -88,15 +75,22 @@
 
 
 							<li class="nav-item">
-								<a href="event.html" class="nav-link nav-toggle"> <i class="material-icons">assignment</i>
-									<span class="title">Current Status</span>
+								<a href="{% url 'student:program_structure' %}" class="nav-link nav-toggle"> <i class="material-icons">assignment</i>
+									<span class="title"> Program Structure</span>
 								</a>
 							</li>
 
+							<li class="nav-item">
+								<a href="{% url 'student:material' %}" class="nav-link nav-toggle"> <i class="material-icons">local_library</i>
+									<span class="title">Course Materials
+									
+								</a>
+							</li>
+							
 					
 							<li class="nav-item">
 								<a href="{% url 'student:departments' %}" class="nav-link nav-toggle"> <i class="material-icons">business</i>
-									<span class="title">Departments</span>
+									<span class="title"> Department & Programs</span>
 								</a>
 
 							
@@ -106,36 +100,7 @@
 
 
 							<li class="nav-item">
-								<a href="#" class="nav-link nav-toggle"> <i class="material-icons">local_library</i>
-									<span class="title">Course Materials
-									</span> <span class="arrow"></span>
-								</a>
-								<ul class="sub-menu">
-									<li class="nav-item">
-										<a href="all_assets.html" class="nav-link "> <span class="title">All Library
-												Assets</span>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="add_library.html" class="nav-link "> <span class="title">Add Library
-												Asset</span>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="add_library_bootstrap.html" class="nav-link "> <span class="title">Add
-												Asset Bootstrap</span>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="edit_library.html" class="nav-link "> <span class="title">Edit
-												Asset</span>
-										</a>
-									</li>
-								</ul>
-							</li>
-							
-							<li class="nav-item">
-								<a href="event.html" class="nav-link nav-toggle"> <i class="material-icons">event</i>
+								<a href="{% url 'student:events' %}" class="nav-link nav-toggle"> <i class="material-icons">event</i>
 									<span class="title">Academic Calendar</span>
 								</a>
 							</li>
@@ -162,35 +127,22 @@
 								</ul>
 							</li>
 
-			
-
 							<li class="nav-item">
-								<a href="#" class="nav-link nav-toggle"> <i class="material-icons">monetization_on</i>
-									<span class="title">Fees</span> <span class="arrow"></span>
+								<a href="{% url 'student:rules' %}" class="nav-link nav-toggle"> <i class="material-icons">warning</i>
+									<span class="title">  Rules & Regulations </span>
 								</a>
-								<ul class="sub-menu">
-									<li class="nav-item">
-										<a href="fees_collection.html" class="nav-link "> <span class="title">Fees
-												Collection</span>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="add_fees.html" class="nav-link "> <span class="title">Add Fees </span>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="add_fees_bootstrap.html" class="nav-link "> <span class="title">Add
-												Fees Bootstrap</span>
-										</a>
-									</li>
-									<li class="nav-item">
-										<a href="fees_receipt.html" class="nav-link "> <span class="title">Fee
-												Receipt</span>
-										</a>
-									</li>
-								</ul>
 							</li>
 
+							<li class="nav-item">
+								<a href="{% url 'student:contact' %}" class="nav-link nav-toggle"> <i class="material-icons">contact_mail</i>
+									<span class="title"> Contact Us </span>
+								</a>
+							</li>
+
+
+			
+
+						
 							{% endfor %}
 			
 						</ul>

@@ -1,0 +1,29 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Test for my course semester</h2>
+
+    {% for i in test  %}
+    <h3>
+        {{i}} <br>
+        {{i.department}} <br>
+        {% for y in i.semester.all  %}
+          
+        {{y.name}} <br>
+        
+        {% endfor %}
+        {{i.course}} <br>
+    </h3>
+      
+    {% endfor %}
+</body>
+</html>

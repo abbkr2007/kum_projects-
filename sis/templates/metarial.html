@@ -1,0 +1,358 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/ui_tabs_accordions_navs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:34:08 GMT -->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<title>Smart University | Bootstrap Responsive Admin Template</title>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="{% static 'fonts/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/material-design-icons/material-icon.css' %}" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/material/material.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/material_style.css' %}">
+	<!-- Theme Styles -->
+	<link href="{% static 'assets/css/theme/light/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/style.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/theme-color.css' %}" rel="stylesheet" type="text/css" />
+	<!-- favicon -->
+	<link rel="shortcut icon" href="http://radixtouch.in/templates/admin/smart/source/assets/img/favicon.ico" />
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+	<div class="page-wrapper">
+		<!-- start header -->
+	{% include "base/header.html" %}
+		<!-- end header -->
+	
+		<!-- start page container -->
+		<div class="page-container">
+			<!-- start sidebar menu -->
+		{% include "s_sidebar.html" %}
+			<!-- end sidebar menu -->
+			<!-- start page content -->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<div class="page-bar">
+						<div class="page-title-breadcrumb">
+							<div class=" pull-left">
+								<div class="page-title">Tabs &amp; Accordions</div>
+							</div>
+							<ol class="breadcrumb page-breadcrumb pull-right">
+								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li><a class="parent-item" href="#">UI Elements</a>&nbsp;<i
+										class="fa fa-angle-right"></i>
+								</li>
+								<li class="active">Tabs &amp; Accordions</li>
+							</ol>
+						</div>
+                    </div>
+                
+				
+					<div class="row">
+		
+						</div>
+						<div class="col-md-8 col-sm-6">
+							<div class="card card-box">
+								<div class="card-head">
+									<header>ACCORDIONS</header>
+							
+								</div>
+								<div class="card-body" id="line-parent">
+									<div class="panel-group accordion" id="accordion3">
+										<div class="panel panel-default">
+											<div class="panel-heading panel-heading-gray">
+												<h4 class="panel-title">
+													<a class="accordion-toggle accordion-toggle-styled"
+														data-toggle="collapse" data-parent="#accordion3"
+														href="#collapse_3_1">
+														Department </a>
+												</h4>
+											</div>
+										<div id="collapse_3_1" class="panel-collapse in">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
+                                                            <div>
+                                                
+                                                                <div class="card-body ">
+                                                                    <div class="table-scrollable">
+
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                         <th>#</th>
+                                                                            <th>Code</th>
+                                                                            <th>Department Name</th>
+                                                                            <th>Prefix</th>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                {% for dept in dept %}
+                                                                                  
+                                                                               
+                                                                                <tr>
+                                                                                    <td>*</td>
+                                                                                    <td>{{dept.code}}</td>
+                                                                                    <td>{{dept.name}}</td>
+                                                                                    <td>{{dept.prefix}}</td>
+                                                                                </tr>
+                                                                              
+                                                                                {% endfor %}
+                                                                                 
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                     
+                                                    </div>
+                                                </div>
+                                            </div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading panel-heading-gray">
+												<h4 class="panel-title">
+													<a class="accordion-toggle accordion-toggle-styled collapsed"
+														data-toggle="collapse" data-parent="#accordion3"
+														href="#collapse_3_2"> Program </a>
+												</h4>
+											</div>
+											<div id="collapse_3_2" class="panel-collapse collapse">
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div>
+                                                    
+                                                                    <div class="card-body ">
+                                                                        <div class="table-scrollable">
+    
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                             <th>Code</th>
+                                                                             <th>Program Name</th>
+                                                                             <th>Faculty Name</th>
+                                                                             <th>Prefix</th>
+
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    {% for dept in program %}
+                                                                                      
+                                                                                   
+                                                                                    <tr>
+                                                                                        
+                                                                                        <td>{{dept.code}}</td>
+                                                                                        <td>{{dept.name}}</td>
+                                                                                        <td>{{dept.faculty}}</td>
+                                                                                        <td>{{dept.prefix}}</td>
+
+                                                                                    </tr>
+                                                                                  
+                                                                                    {% endfor %}
+                                                                                     
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                         
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+
+
+											</div>
+                                        </div>
+                                        
+
+										<div class="panel panel-default">
+											<div class="panel-heading panel-heading-gray">
+												<h4 class="panel-title">
+													<a class="accordion-toggle accordion-toggle-styled collapsed"
+														data-toggle="collapse" data-parent="#accordion3"
+														href="#collapse_3_3"> Courses </a>
+												</h4>
+											</div>
+											<div id="collapse_3_3" class="panel-collapse collapse">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div>
+                                                    
+                                                                    <div class="card-body ">
+                                                                        <div class="table-scrollable">
+    
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                                    <th>#</th>
+                                                                                    <th>Code</th>
+                                                                                    <th>Course Name</th>
+                                                                                    <th>Prefix</th>
+                                                                                    
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    {% for dept in course  %}
+                                                                                      
+                                                                                  
+                                                                                 
+                                                                                      
+                                                                                   
+                                                                                    <tr>
+                                                                                        <td>*</td>
+                                                                                        <td>{{dept.code}}</td>
+                                                                                        <td>{{dept.name}}</td>
+                                                                                        <td>{{dept.prfix}}</td>
+                                                                                    </tr>
+                                                                                  
+                                                                                   
+                                                                                    {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                         
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+										</div>
+										<div class="panel panel-default">
+											<div class="panel-heading panel-heading-gray">
+												<h4 class="panel-title">
+													<a class="accordion-toggle accordion-toggle-styled collapsed"
+														data-toggle="collapse" data-parent="#accordion3"
+														href="#collapse_3_4"> Courses Materials </a>
+												</h4>
+											</div>
+											<div id="collapse_3_4" class="panel-collapse collapse">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div>
+                                                    
+                                                                    <div class="card-body ">
+                                                                        <div class="table-scrollable">
+    
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                             <th>Course Name</th>
+                                                                                <th>Code</th>
+                                                                                <th>Subjects Name</th>
+                                                                                <th>Metarial</th>
+                                                                             
+                                                                                </thead>
+                                                                                <tbody>
+																					<tr>
+																					{% for c in course  %}
+																				
+																						<td style="color: white; background-color: rgb(28, 56, 45)">
+																						<b>
+																							{{c.name}}
+																						</b>
+																						</td>
+																					
+
+																					{% for dept in c.subject.all %}
+
+                                                                                    <tr>
+																			
+                                                                                        <td>*</td>
+                                                                                        <td>{{dept.code}}</td>
+                                                                                        <td>{{dept.name}}</td>
+																					   
+						<td><a href="{{dept.files.url}}" download><i class="fa fa-download" aria-hidden="true"></i></a></td>
+						                                                                     
+																						
+																	
+                                                                                     </tr>
+                                                                                  
+																					 {% endfor %}
+																					</tr>
+
+																					 {% endfor %}
+																					 
+                                                                                     
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                         
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		<!-- end page container -->
+		<!-- start footer -->
+		<div class="page-footer">
+			<div class="page-footer-inner"> 2017 &copy; Smart University Theme By
+				<a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
+			</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
+			</div>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- start js include path -->
+	<script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/popper/popper.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-blockui/jquery.blockui.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js' %}"></script>
+	<!-- Common js-->
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/layout.js' %}"></script>
+	<script src="{% static 'assets/js/theme-color.js' %}"></script>
+	<!-- Material -->
+	<script src="{% static 'assets/plugins/material/material.min.js' %}"></script>
+	<!-- end js include path -->
+</body>
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/ui_tabs_accordions_navs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:34:08 GMT -->
+</html>
