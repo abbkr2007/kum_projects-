@@ -1,0 +1,150 @@
+
+{% extends "s_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  
+
+
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/edit_professor.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:33:28 GMT -->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<title>Smart University | Bootstrap Responsive Admin Template</title>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="{% static 'fonts/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/material-design-icons/material-icon.css' %}" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/material/material.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/material_style.css' %}">
+	<!-- Theme Styles -->
+	<link href="{% static 'assets/css/theme/light/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/style.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/theme-color.css' %}" rel="stylesheet" type="text/css" />
+	<!-- dropzone -->
+	<link href="{% static 'assets/plugins/dropzone/dropzone.css' %}" rel="stylesheet" media="screen">
+	<!-- Date Time item CSS -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/material-datetimepicker/bootstrap-material-datetimepicker.css' %}" />
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'logo/fav.ico' %}"/>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+	<div class="page-wrapper">
+		<!-- start header -->
+{% include "base/header.html" %}
+		<!-- end header -->
+	
+		<!-- start page container -->
+		<div class="page-container">
+			<!-- start sidebar menu -->
+		{% include "l_sidebar.html" %}
+			<!-- end sidebar menu -->
+			<!-- start page content -->
+
+
+		
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<div class="page-bar">
+						<div class="page-title-breadcrumb">
+							<div class=" pull-left">
+								<div class="page-title">Edit Professor</div>
+							</div>
+							<ol class="breadcrumb page-breadcrumb pull-right">
+								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li><a class="parent-item" href="#">Professor</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li class="active">Edit Professor</li>
+							</ol>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card-box">
+								<div class="card-head">
+									<header>Basic Information</header>
+								</div>							
+									<div class="col-lg-12 p-t-20">
+										<div class="mdl-textfield mdl-js-textfield txt-full-width">
+
+											<form method="post">
+												{% csrf_token %}
+												{{ form|crispy }}
+												<div class="col-lg-12 p-t-20 text-center">
+													<button type="submit" class="btn btn-primary">Select Subject</button>
+
+												</div>
+												
+												
+											  </form>
+
+										</div>
+									</div>								
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+				</div>
+			</div>
+			<!-- end page content -->
+		
+		</div>
+		<!-- end page container -->
+		<!-- start footer -->
+		<div class="page-footer">
+			<div class="page-footer-inner"> 2017 &copy; Smart University Theme By
+				<a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
+			</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
+			</div>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- start js include path -->
+	<script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/popper/popper.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-blockui/jquery.blockui.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Common js-->
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/layout.js' %}"></script>
+	<script src="{% static 'assets/js/theme-color.js' %}"></script>
+	<!-- Material -->
+	<script src="{% static 'assets/plugins/material/material.min.js' %}"></script>
+	<script src="{% static 'assets/js/pages/material-select/getmdl-select.js' %}"></script>
+	<script src="{% static 'assets/plugins/material-datetimepicker/moment-with-locales.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/material-datetimepicker/bootstrap-material-datetimepicker.js' %}"></script>
+	<script src="{% static 'assets/plugins/material-datetimepicker/datetimepicker.js' %}"></script>
+	<!-- dropzone -->
+	<script src="{% static 'assets/plugins/dropzone/dropzone.js' %}"></script>
+	<script src="{% static 'assets/plugins/dropzone/dropzone-call.js' %}"></script>
+	<!-- end js include path -->
+</body>
+
+
+
+
+{% endblock content %}

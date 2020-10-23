@@ -100,30 +100,80 @@ class My_Course(models.Model):
 
 
 
-class Student_Attendence(models.Model):
+
+
+
+class Subject_Attendence(models.Model):
+    # Track Subject
     lecturer = models.ForeignKey(Lecturer, on_delete=models.SET_NULL, blank=True, null=True)
     department = models.ForeignKey(to='sis.Department', on_delete=models.SET_NULL, blank=True, null=True)
     semester =models.ForeignKey(to='sis.Semester', on_delete=models.SET_NULL, blank=True, null=True)
     subject = models.ForeignKey(to='sis.Subject', on_delete=models.SET_NULL, blank=True, null=True)
-    student = models.ForeignKey(to='sis.Student', on_delete=models.SET_NULL, blank=True, null=True)
-    present = models.PositiveIntegerField()
-    absent = models.IntegerField()
-
+    hour = models.CharField(max_length=50, blank=True, null=True)
+ 
+    
     def __str__(self):
         return str(self.subject)
+    
+    
+    def get_absolute_url(self):
+        return reverse('lecturer:student_attendance', kwargs={
+            'pk': self.pk
+        })
+
+
+    def get_update_url(self):
+        return reverse('lecturer:subject_attendance_edit', kwargs={
+            'pk': self.pk
+        })
+
+
+class Student_Attendence(models.Model):
+    # TrackStudent
+    lecturer = models.ForeignKey(Lecturer, on_delete=models.SET_NULL, blank=True, null=True)
+    subject = models.ForeignKey(Subject_Attendence, related_name='subject_attendance', on_delete=models.SET_NULL, blank=True, null=True)
+    student = models.ForeignKey(to='sis.Student', on_delete=models.SET_NULL, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    present_days = models.PositiveIntegerField(blank=True, null=True)
+    absent_days = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.student)
+    
+    
+    def get_absolute_url(self):
+        return reverse('lecturer:student_attendence_detail', kwargs={
+            'pk': self.pk
+        })
+
+    def get_update_url(self):
+        return reverse('lecturer:student_attendance_edit', kwargs={
+            'pk': self.pk
+        })
 
     class Meta:
         db_table = ''
         managed = True
         verbose_name = 'Student_Attendence'
         verbose_name_plural = 'Student_Attendences'
+    
 
 
 
+class Attendance_report(models.Model):
+    subject = models.ForeignKey(Subject_Attendence, related_name='subject_attendance_reprot', on_delete=models.SET_NULL, blank=True, null=True)
+    student = models.ForeignKey(Student_Attendence, related_name='student_attendance_report', on_delete=models.SET_NULL, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    attend = models.BooleanField(default=False)
 
-
-
-
+    def __str__(self):
+        return str(self.student)
+    
+    def get_absolute_url(self):
+        return reverse('lecturer:attendence_report', kwargs={
+            'pk': self.pk
+        })
+    
 
 
 
@@ -179,4 +229,33 @@ class Work_Load(models.Model):
         managed = True
         verbose_name = 'Work_Load'
         verbose_name_plural = 'Work_Loads'
+
+
+
+
+class Notice_Files_of_lecturer(models.Model):
+
+    name = models.CharField(max_length=100, blank=True)
+    files = models.FileField(upload_to='rules/rule/', blank=True)
+
+    def __str__(self):
+        return self.name
+   
+
+class Notice_of_lecturer(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    handbook = models.ManyToManyField(Notice_Files_of_lecturer, related_name='handbook_file', blank=True)
+    rule = models.ManyToManyField(Notice_Files_of_lecturer, related_name='rules_file', blank=True)
+    records_forms = models.ManyToManyField(Notice_Files_of_lecturer, related_name='records_file', blank=True)
+    policy = models.ManyToManyField(Notice_Files_of_lecturer, related_name='policies_file', blank=True)
+    
+    def __str__(self):
+        return self.name
+        
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Notice_of_lecturer'
+        verbose_name_plural = 'Notice_of_lecturers'
 

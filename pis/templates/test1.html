@@ -12,18 +12,41 @@
 <body>
     <h2>Test for my course semester</h2>
 
-    {% for i in test  %}
+ 
     <h3>
-        {{i}} <br>
-        {{i.department}} <br>
-        {% for y in i.semester.all  %}
-          
-        {{y.name}} <br>
-        
-        {% endfor %}
-        {{i.course}} <br>
+     {{queryset.student.get_name}} <br>
+     {{queryset.attend}}
+     {{queryset.date}}
     </h3>
-      
-    {% endfor %}
+      <h3>
+          from report View
+      </h3>
+
+
+
+  <h5>basic filter for report</h5>
+
+
+      {{queryset.student.get_name}} <br>
+        
+  
+
+      <h3>rlated name filter for subject foreignkey </h3>
+
+      {% for post in queryset.subject_attendance_reprot.all  %}
+
+      {{post.subject.name}}
+        
+      {% endfor %}
+
+      <h2>filter for related name student </h2>
+
+      {% for student in queryset.student_attendance_report.all  %}
+
+      {{student.student.student.get_name}} <br>
+      {{student.date}} <br> <br>
+        
+      {% endfor %}
+  
 </body>
 </html>

@@ -160,9 +160,11 @@ class Course_detail(generic.DetailView):
 
 
 
+
+
 class Notice_files(generic.TemplateView):
     model = Student
-    template_name = 'test.html'
+    template_name = 'notice_student.html'
 
     def get_context_data(self, **kwargs):
         profile = Student.objects.filter()
@@ -174,6 +176,9 @@ class Notice_files(generic.TemplateView):
             'notice': notice,
         }
         return context
+
+
+
 
 class Event(generic.TemplateView):
     model = Student

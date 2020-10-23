@@ -1,0 +1,189 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/ui_tabs_accordions_navs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:34:08 GMT -->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<title>Smart University | Bootstrap Responsive Admin Template</title>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="{% static 'fonts/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/material-design-icons/material-icon.css' %}" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+	<link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/material/material.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/material_style.css' %}">
+	<!-- Theme Styles -->
+	<link href="{% static 'assets/css/theme/light/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/style.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/theme-color.css' %}" rel="stylesheet" type="text/css" />
+	<!-- favicon -->
+	<link rel="shortcut icon" href="http://radixtouch.in/templates/admin/smart/source/assets/img/favicon.ico" />
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+	<div class="page-wrapper">
+		<!-- start header -->
+		{% include "base/header.html" %}
+		<!-- end header -->
+		<!-- start color quick setting -->
+	
+		<!-- end color quick setting -->
+		<!-- start page container -->
+		<div class="page-container">
+			<!-- start sidebar menu -->
+			{% include "l_sidebar.html" %}
+			<!-- end sidebar menu -->
+			<!-- start page content -->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<div class="page-bar">
+						<div class="page-title-breadcrumb">
+							<div class=" pull-left">
+								<div class="page-title">Rules &amp; Regulations</div>
+							</div>
+							<ol class="breadcrumb page-breadcrumb pull-right">
+								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li><a class="parent-item" href="#">UI Elements</a>&nbsp;<i
+										class="fa fa-angle-right"></i>
+								</li>
+								<li class="active">Rules &amp; Regulations</li>
+							</ol>
+						</div>
+					</div>
+					<div class="row">
+						
+
+						<div class="col-md-6 col-sm-6">
+							<div class="borderBox light bordered card-box">
+								<div class="borderBox-title tabbable-line">
+									<div class="caption">
+										<span class="caption-subject font-dark bold uppercase">Rules &amp; Regulations</span>
+									</div>
+									<ul class="nav nav-tabs">
+										<li class="nav-item">
+											<a href="#borderBox_tab3" data-toggle="tab"> Policies </a>
+										</li>
+										<li class="nav-item">
+											<a href="#borderBox_tab2" data-toggle="tab"> Rules </a>
+										</li>
+										<li class="nav-item">
+											<a href="#borderBox_tab1" data-toggle="tab" class="active"> Handbook </a>
+										</li>
+									</ul>
+								</div>
+								<div class="borderBox-body">
+									<div class="tab-content">
+										<div class="tab-pane active" id="borderBox_tab1">
+											<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+												molestie consequat, vel illum dolore
+												eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
+												dignissim qui blandit praesent.</p>
+											<p>{% for i in notice  %}
+
+												{% for notice in i.handbook.all  %} <br>
+												{{notice.name}} : .................
+
+												<a href="{{notice.files.url}}"><i class="fa fa-download" aria-hidden="true"></i></a>
+											  
+
+
+												{% endfor %}
+											  
+											{% endfor %}</p>
+											<p>
+								
+										</div>
+										<div class="tab-pane" id="borderBox_tab2">
+											<p>{% for i in notice  %}
+
+												{% for notice in i.rule.all  %} <br>
+												{{notice.name}} : .................
+
+												<a href="{{notice.files.url}}"><i class="fa fa-download" aria-hidden="true"></i></a>
+											  
+
+
+												{% endfor %}
+											  
+											{% endfor %}</p>
+											<p>
+										
+										</div>
+										<div class="tab-pane" id="borderBox_tab3">
+											<p>{% for i in notice  %}
+
+												{% for notice in i.policy.all  %} <br>
+												  {{notice.name}} : .................
+
+												  <a href="{{notice.files.url}}"><i class="fa fa-download" aria-hidden="true"></i></a>
+												
+
+												{% endfor %}
+											  
+											{% endfor %}</p>
+											<p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+					
+				</div>
+			</div>
+			<!-- end page content -->
+			<!-- start chat sidebar -->
+		
+		</div>
+		<!-- end page container -->
+		<!-- start footer -->
+		<div class="page-footer">
+			<div class="page-footer-inner"> 2017 &copy; Smart University Theme By
+				<a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
+			</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
+			</div>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- start js include path -->
+	<script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/popper/popper.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-blockui/jquery.blockui.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js' %}"></script>
+	<!-- Common js-->
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/layout.js' %}"></script>
+	<script src="{% static 'assets/js/theme-color.js' %}"></script>
+	<!-- Material -->
+	<script src="{% static 'assets/plugins/material/material.min.js' %}"></script>
+	<!-- end js include path -->
+</body>
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/ui_tabs_accordions_navs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:34:08 GMT -->
+</html>

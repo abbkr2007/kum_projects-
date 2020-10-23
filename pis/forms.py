@@ -2,7 +2,7 @@
 from django import forms
 # from tinymce.widgets import TinyMCE
 # from tinymce import TinyMCE
-from .models import Lecturer
+from .models import Lecturer, Student_Attendence, Subject_Attendence
 
 
 
@@ -17,6 +17,42 @@ class Lecturer_Profile_Form(forms.ModelForm):
         widgets = {
             'date_of_birth':DateInput(),
             'date_of_join': DateInput(),
+
+        }
+
+
+
+
+class Student_Attendance_Form(forms.ModelForm):
+
+    class Meta:
+        model = Subject_Attendence
+        exclude = ['lecturer']
+        widgets = {
+            'date':DateInput(),
+            # 'date_of_admission': DateInput(),
+
+        }
+
+class Attendance_Form(forms.ModelForm):
+
+    class Meta:
+        model = Student_Attendence
+        exclude = ['lecturer']
+        widgets = {
+            'date':DateInput(),
+            # 'date_of_admission': DateInput(),
+
+        }
+
+class Student_Form(forms.ModelForm):
+
+    class Meta:
+        model = Student_Attendence
+        exclude = ['lecturer']
+        widgets = {
+            'date':DateInput(),
+            # 'date_of_admission': DateInput(),
 
         }
 

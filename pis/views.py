@@ -20,7 +20,7 @@ class Lecturer_profile(generic.TemplateView):
     template_name = 'lecturer_profile.html'
 
     def get_context_data(self, **kwargs):
-        profile = Lecturer.objects.all()
+        profile = Lecturer.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
         context = {
             'profile': profile,
@@ -44,7 +44,7 @@ class Lecturer_edit(generic.UpdateView):
         }))
 
     def get_context_data(self, **kwargs):
-        self.profile = Lecturer.objects.all()
+        self.profile = Lecturer.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['title'] = 'Update'
         context['profile'] = self.profile
@@ -60,8 +60,8 @@ class Course_by_teacher(generic.ListView):
     context_object_name = 'queryset'
     
     def get_context_data(self, **kwargs):
-        profile = Lecturer.objects.all()
-        semester_course = My_Course.objects.all()
+        profile = Lecturer.objects.filter(user=self.request.user)
+        semester_course = My_Course.objects.filter(lecturer__user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         context['test'] = semester_course
@@ -78,10 +78,152 @@ class My_Course_detail(generic.DetailView):
     
     
     def get_context_data(self, **kwargs):
-        self.profile = Lecturer.objects.all()
+        self.profile = Lecturer.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = self.profile
         return context
+
+
+
+
+
+
+
+
+class Attendance_List_View(generic.ListView):
+    model = Student_Attendence
+    template_name = 'attend_list.html'
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        semester_course = Subject_Attendence.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        context['test'] = semester_course
+        return context
+
+
+class Attendance_Update_View(generic.UpdateView):
+    model = Student_Attendence
+    template_name = 'attend_update.html'
+    form_class = Attendance_Form
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        semester_course = Subject_Attendence.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        context['test'] = semester_course
+        return context
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        return redirect(reverse("lecturer:student_attendance_edit", kwargs={
+            'pk': form.instance.pk
+        }))
+
+
+
+
+class Student_attendance_subject(generic.ListView):
+    model = Subject_Attendence
+    template_name = 'attendence.html'
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        semester_course = Subject_Attendence.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        context['test'] = semester_course
+        return context
+
+
+
+class Attendence_detail(generic.DetailView):
+    model = Subject_Attendence
+    template_name = 'attendence_details.html'
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        semester_course = Student_Attendence.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        context['test'] = semester_course
+        return context
+
+
+
+class Attendance_create_subject(generic.CreateView):
+    model = Subject_Attendence
+    form_class = Student_Attendance_Form
+    template_name = 'attendance_edit_subject.html'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        return context
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        return redirect('lecturer:attendance')
+
+
+class Attendance_create(generic.CreateView):
+    model = Student_Attendence
+    form_class = Student_Form
+    template_name = 'attendance_edit.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        return context
+
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        return redirect(reverse("lecturer:student_attendance", kwargs={
+            'pk': form.instance.pk
+        }))
+
+
+
+
+
+
+# class Update(generic.UpdateView):
+#     model = Student_Attendance
+#     form_class = Student_Attendance_Form
+#     template_name = 'edit.html'
+#     context_object_name = 'queryset'
+
+#     def form_valid(self, form):
+#         form.instance.CustomUser = get_booker(self.request.user)
+#         form.save()
+#         # messages.success(self.request, 'Successfully updated your  car')
+#         return redirect(reverse("lecturer:edit", kwargs={
+#             'pk': form.instance.pk
+#         }))
+
+#     def get_context_data(self, **kwargs):
+#         self.profile = Lecturer.objects.all()
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Update'
+#         context['profile'] = self.profile
+#         return context
+
+
+
+
+
 
 
 
@@ -98,6 +240,32 @@ class Workload(generic.TemplateView):
             'workload':workload
         }
         return context
+
+
+
+
+
+
+
+class Notice_files(generic.TemplateView):
+    model = Lecturer
+    template_name = 'notice_lecturer.html'
+
+    def get_context_data(self, **kwargs):
+        profile = Lecturer.objects.filter()
+        notice = Notice_of_lecturer.objects.all()
+        context = super().get_context_data(**kwargs)
+        context = {
+
+            'profile': profile,
+            'notice': notice,
+        }
+        return context
+
+
+
+
+
         
 class ContactView(generic.FormView):
     # model = Category

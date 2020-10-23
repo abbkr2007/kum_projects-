@@ -1,0 +1,37 @@
+<h3>
+  list view 
+</h3>
+
+
+<h4>
+  hi page from Student Attendance
+    {% for yy in queryset %}
+
+   <a href="{{yy.get_absolute_url}}">{{yy.student.get_name}}</a> <br>
+      
+    {% endfor %}
+
+
+    <h3>Subject Attendance</h3>
+
+    {% for i in test  %}
+
+
+    <a href="{{i.get_absolute_url}}">
+      {{i.subject.name}} <br>
+    </a>
+      
+    {% endfor %}
+
+      <h4>From Report</h4>
+
+      {% for r in report  %}
+
+      {{r.student.student.get_name}} <br> 
+
+      {{r.subject.subject.name}} <br><br>
+        
+      {% endfor %}
+
+
+</h4>

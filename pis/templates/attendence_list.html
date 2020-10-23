@@ -1,0 +1,22 @@
+<h3>testing testing from student attendence system</h3>
+
+
+<h4>
+    {% for q in queryset  %}
+
+ 
+    {{q.subject.subject.name}} <br> <br>
+  
+      
+    {% endfor %}
+
+    <h4>final test</h4>
+
+    {% for subject in queryset.subject_set.all  %}
+
+    {{queryset.subject.student.name}}
+
+    {{queryset.date}}
+      
+    {% endfor %}
+</h4>

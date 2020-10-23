@@ -63,19 +63,19 @@
 							</li>
 
 							<li class="nav-item">
-								<a href="event.html" class="nav-link nav-toggle"> <i class="material-icons">check_box</i>
+								<a href="{% url 'lecturer:attendance' %}" class="nav-link nav-toggle"> <i class="material-icons">check_box</i>
 									<span class="title">Attendance</span>
 								</a>
 							</li>
 
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a href="#" class="nav-link nav-toggle"> <i class="material-icons">local_library</i>
 									<span class="title">Course Materials
 									</span>
 								</a>
 								
 							</li>
-							
+							 -->
 
 
 							<li class="nav-item">
@@ -104,7 +104,7 @@
 							</li>
 
 							<li class="nav-item">
-								<a href="" class="nav-link nav-toggle"> <i class="material-icons">warning</i>
+								<a href="{% url 'lecturer:guide_line' %}" class="nav-link nav-toggle"> <i class="material-icons">warning</i>
 									<span class="title">  Rules & Regulations </span>
 								</a>
 							</li>
