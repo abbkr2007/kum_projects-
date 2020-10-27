@@ -22,7 +22,25 @@
                 <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
             </ul> -->
 
+       {% comment %}
 
+            {% if request.user.is_authenticated %}
+            
+            <form class="search-form-opened" action="{% url 'hr:search' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="q">
+                    <span class="input-group-btn">
+                        <a href="javascript:;" class="btn submit">
+                            <i class="icon-magnifier"></i>
+                        </a>
+                    </span>
+                </div>
+            </form>
+            {% endif %}
+                  
+       {% endcomment %}
+           
 
             <!-- start mobile menu -->
             <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"

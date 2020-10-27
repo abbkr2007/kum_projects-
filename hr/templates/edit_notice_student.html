@@ -53,7 +53,7 @@
 		<!-- start page container -->
 		<div class="page-container">
 			<!-- start sidebar menu -->
-		{% include "s_sidebar.html" %}
+		{% include "h_sidebar.html" %}
 			<!-- end sidebar menu -->
 			<!-- start page content -->
 
@@ -64,7 +64,7 @@
 					<div class="page-bar">
 						<div class="page-title-breadcrumb">
 							<div class=" pull-left">
-								<div class="page-title">Edit Professor</div>
+								<div class="page-title">Edit Student</div>
 							</div>
 							<ol class="breadcrumb page-breadcrumb pull-right">
 								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
@@ -85,11 +85,11 @@
 									<div class="col-lg-12 p-t-20">
 										<div class="mdl-textfield mdl-js-textfield txt-full-width">
 
-											<form method="post">
+											<form method="post" enctype="multipart/form-data">
 												{% csrf_token %}
 												{{ form|crispy }}
 												<div class="col-lg-12 p-t-20 text-center">
-													<button type="submit" class="btn btn-primary">Update</button>
+													<button type="submit" class="btn btn-primary">Update Student's Notice</button>
 
 												</div>
 												

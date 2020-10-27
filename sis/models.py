@@ -21,6 +21,7 @@ class Student(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='active')
     registration_number   = models.CharField(max_length=100, unique=True)
+    dept = models.ForeignKey('Department', related_name='student_department', on_delete=models.SET_NULL, blank=True, null=True)
     first_name = models.CharField(max_length=40)
     middle_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40, blank=True)
@@ -28,10 +29,13 @@ class Student(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER)
     date_of_birth = models.DateField(default=timezone.now)
     date_of_admission = models.DateField(default=timezone.now)
+    join = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
     address = models.TextField(blank=True)
     others = models.TextField(blank=True)
+
+  
   
     def __str__(self):
         return self.registration_number
@@ -41,7 +45,7 @@ class Student(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('student:sudent_detail', kwargs={
+        return reverse('hr:student_about', kwargs={
             'pk': self.pk
         })
         
@@ -53,6 +57,7 @@ class Student(models.Model):
     class Meta:
         db_table = ''
         managed = True
+        ordering = ['-join']
         verbose_name = 'Student'
         verbose_name_plural = 'Students'
         
@@ -295,10 +300,10 @@ class Notice_Files(models.Model):
 
 class Notice(models.Model):
     name = models.CharField(max_length=100, blank=True)
-    handbook = models.ManyToManyField(Notice_Files, related_name='handbook_file', blank=True)
-    rule = models.ManyToManyField(Notice_Files, related_name='rules_file', blank=True)
-    records_forms = models.ManyToManyField(Notice_Files, related_name='records_file', blank=True)
-    policy = models.ManyToManyField(Notice_Files, related_name='policies_file', blank=True)
+    handbook = models.ForeignKey(Notice_Files, related_name='handbook_file', on_delete=models.CASCADE, null=True, blank=True)
+    rule = models.ForeignKey(Notice_Files, related_name='rules_file', on_delete=models.CASCADE, null=True, blank=True)
+    records_forms = models.ForeignKey(Notice_Files, related_name='records_file', on_delete=models.CASCADE, null=True, blank=True)
+    policy = models.ForeignKey(Notice_Files, related_name='policies_file', on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.name
         
@@ -308,6 +313,7 @@ class Notice(models.Model):
         managed = True
         verbose_name = 'Notice'
         verbose_name_plural = 'Notices'
+
 
 
 

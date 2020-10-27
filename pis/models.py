@@ -43,6 +43,9 @@ class Lecturer(models.Model):
 
     def __str__(self):
         return self.first_name
+        
+    def get_name(self):
+        return (f'{self.first_name +" " + " "+ self.middle_name +" " + " "+  self.last_name}')
 
     class Meta:
         db_table = ''
@@ -244,10 +247,10 @@ class Notice_Files_of_lecturer(models.Model):
 
 class Notice_of_lecturer(models.Model):
     name = models.CharField(max_length=100, blank=True)
-    handbook = models.ManyToManyField(Notice_Files_of_lecturer, related_name='handbook_file', blank=True)
-    rule = models.ManyToManyField(Notice_Files_of_lecturer, related_name='rules_file', blank=True)
-    records_forms = models.ManyToManyField(Notice_Files_of_lecturer, related_name='records_file', blank=True)
-    policy = models.ManyToManyField(Notice_Files_of_lecturer, related_name='policies_file', blank=True)
+    handbook = models.ForeignKey(Notice_Files_of_lecturer, related_name='handbook_file', on_delete=models.CASCADE, null=True, blank=True)
+    rule = models.ForeignKey(Notice_Files_of_lecturer, related_name='rules_file', on_delete=models.CASCADE, null=True, blank=True)
+    records_forms = models.ForeignKey(Notice_Files_of_lecturer, related_name='records_file', on_delete=models.CASCADE, null=True, blank=True)
+    policy = models.ForeignKey(Notice_Files_of_lecturer, related_name='policies_file', on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
         return self.name

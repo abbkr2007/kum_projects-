@@ -1,6 +1,8 @@
 
-
 {% load static %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
@@ -42,11 +44,8 @@
 		<!-- start header -->
 	{% include "base/header.html" %}
 		<!-- end header -->
-
-
-
-		<!-- start page container -->
-		<div class="page-container">
+	
+        <div class="page-container">
 			<!-- start sidebar menu -->
 
             {% include "h_sidebar.html" %}
@@ -58,15 +57,15 @@
 					<div class="page-bar">
 						<div class="page-title-breadcrumb">
 							<div class=" pull-left">
-								<div class="page-title">Lecturer Profile</div>
+								<div class="page-title">Student Profile</div>
 							</div>
 							<ol class="breadcrumb page-breadcrumb pull-right">
 								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
-										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+										href="{% url 'student:profile' %}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
 								</li>
-								<li><a class="parent-item" href="#">Lecturer</a>&nbsp;<i class="fa fa-angle-right"></i>
+								<li><a class="parent-item" href="#">Student</a>&nbsp;<i class="fa fa-angle-right"></i>
 								</li>
-								<li class="active">Lecturer Profile</li>
+								<li class="active">Student Profile</li>
 							</ol>
 						</div>
 					</div>
@@ -82,109 +81,54 @@
 								<div class="card card-topline-aqua">
 									<div class="card-body no-padding height-9">
 										
-										{% for profile in profile  %}
 									
 										<div class="row">
 											<div class="profile-userpic">
-												<img src="{{profile.image.url}}" class="img-responsive" alt="">
+												<img src="{{student.image.url}}" class="img-responsive" alt="">
 											</div>
 										</div>
 										<div class="profile-usertitle">
-											<div class="profile-usertitle-name" style="color: black;">{{profile.first_name}} {{profile.middle_name}} {{profile.last_name}}</div>
+											<div class="profile-usertitle-name" style="color: black;">{{student.get_name}} </div>
 										</div>
-											<!-- Nav tabs -->
-										<div class="p-rl-20">
-
-											<div class="profile-usertitle">
-
-											<div class="profile-usertitle-name;nav customtab nav-tabs">
-											
-												<p class="nav-link active">Available</p>
-											</div>
-	
-                                                   </div>
-											</div>
-
 								
 										<ul class="list-group list-group-unbordered">
 											<li class="list-group-item">
-												<b>Lecturer ID </b>
-												<div class="profile-desc-item pull-right">{{profile.pin_number}}</div>
+												<b>Student ID </b>
+												<div class="profile-desc-item pull-right">{{student.registration_number}}</div>
 											</li>
 	
-										
-							
+											<li class="list-group-item">
+												<b>Advisor </b>
+												<div class="profile-desc-item pull-right">fgfg</div>
+											</li>
+											<li class="list-group-item">
+												<b>Date Of Admission </b>
+												<div class="profile-desc-item pull-right">{{student.date_of_admission}}</div>
+											</li>
 											<li class="list-group-item">
 												<b>Gender </b>
-												<div class="profile-desc-item pull-right">{{profile.gender}}</div>
+												<div class="profile-desc-item pull-right">{{student.gender}}</div>
 											</li>
 											<li class="list-group-item">
 												<b>Date Of Birth </b>
-												<div class="profile-desc-item pull-right">{{profile.date_of_birth}}</div>
+												<div class="profile-desc-item pull-right">{{student.date_of_birth}}</div>
 											</li>
 											<li class="list-group-item">
 												<b>Phone</b>
-												<div class="profile-desc-item pull-right">{{profile.phone}}</div>
+												<div class="profile-desc-item pull-right">{{student.phone}}</div>
 											</li>
 											<li class="list-group-item">
 												<b>Email </b>
-												<div class="profile-desc-item pull-right">{{profile.email}}</div>
+												<div class="profile-desc-item pull-right">{{student.email}}</div>
 											</li>
 										
 										</ul>
 
+								
+
 									</div>
 								</div>
-<!-- 
-								<div class="card">
-									<div class="card-head card-topline-aqua">
-										<header>About Me</header>
-									</div>
-									<div class="card-body no-padding height-9">
-										<div class="profile-desc">
-											Hello I am Sarah Smith a student in Sanjivni College Surat. I love to study
-											with all my class friends and
-											professors.
-										</div>
 
-
-										<ul class="list-group list-group-unbordered">
-											<li class="list-group-item">
-												<b>Gender </b>
-												<div class="profile-desc-item pull-right">Female</div>
-											</li>
-											<li class="list-group-item">
-												<b>Department</b>
-												<div class="profile-desc-item pull-right">Mechanical</div>
-											</li>
-											<li class="list-group-item">
-												<b>Email </b>
-												<div class="profile-desc-item pull-right">test@example.com</div>
-											</li>
-											<li class="list-group-item">
-												<b>Phone</b>
-												<div class="profile-desc-item pull-right">1234567890</div>
-											</li>
-										</ul>
-
-
-										<div class="row list-separated profile-stat">
-											<div class="col-md-4 col-sm-4 col-6">
-												<div class="uppercase profile-stat-title"> 37 </div>
-												<div class="uppercase profile-stat-text"> Projects </div>
-											</div>
-											<div class="col-md-4 col-sm-4 col-6">
-												<div class="uppercase profile-stat-title"> 51 </div>
-												<div class="uppercase profile-stat-text"> Tasks </div>
-											</div>
-											<div class="col-md-4 col-sm-4 col-6">
-												<div class="uppercase profile-stat-title"> 61 </div>
-												<div class="uppercase profile-stat-text"> Uploads </div>
-											</div>
-										</div>
-									</div>
-								</div>
-								 -->
 								<div class="card">
 									<div class="card-head card-topline-aqua">
 										<header>Address</header>
@@ -192,14 +136,13 @@
 									<div class="card-body no-padding height-9">
 										<div class="row text-center m-t-10">
 											<div class="col-md-12">
-												<p>{{profile.address}}
+												<p>{{student.address}}
 													<br> Gaza, Pelestine .</p>
 											</div>
 										</div>
 									</div>
 								</div>
 						
-								{% endfor %}
 							</div>
 							<!-- END BEGIN PROFILE SIDEBAR -->
 							<!-- BEGIN PROFILE CONTENT -->
@@ -239,20 +182,14 @@
 															land creepeth good moving good. Life living
 															you're.</p>
 														<br>
-														<h4 class="font-bold">Education</h4>
+														<h4 class="font-bold">Important Note</h4>
 														<hr>
 														<ul>
 															<li>Schooling at sarvoday vidhyalay, Mumbai</li>
 															<li>Betchler In Arts in Bhagvati College Hariyana</li>
 														</ul>
 														<br>
-														<h4 class="font-bold">Certificates</h4>
-														<hr>
-														<ul>
-															<li>1st Prise in Music competition</li>
-															<li>1st Prise in Acting & Drama</li>
-															<li>Gold Medal in Betchler in Arts</li>
-														</ul>
+													
 														<br>
 													</div>
 												</div>
@@ -275,17 +212,11 @@
 				<!-- end chat sidebar -->
 			</div>
 			<!-- end page container -->
-			<!-- start footer -->
-			<div class="page-footer">
-				<div class="page-footer-inner"> 2017 &copy; Smart University Theme By
-					<a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">Redstar Theme</a>
-				</div>
-				<div class="scroll-to-top">
-					<i class="icon-arrow-up"></i>
-				</div>
-			</div>
-			<!-- end footer -->
+		
+  {% include "base/footer.html" %}
+
 		</div>
+        
 	</div>
 	<!-- start js include path -->
 	<script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
@@ -307,3 +238,4 @@
 
 <!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/student_profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:33:32 GMT -->
 </html>
+

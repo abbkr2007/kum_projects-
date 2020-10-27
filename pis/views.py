@@ -175,6 +175,7 @@ class Attendance_create_subject(generic.CreateView):
         return redirect('lecturer:attendance')
 
 
+
 class Attendance_create(generic.CreateView):
     model = Student_Attendence
     form_class = Student_Form
@@ -224,9 +225,6 @@ class Attendance_create(generic.CreateView):
 
 
 
-
-
-
 class Workload(generic.TemplateView):
     model = Work_Load
     template_name = 'workload.html'
@@ -240,9 +238,6 @@ class Workload(generic.TemplateView):
             'workload':workload
         }
         return context
-
-
-
 
 
 

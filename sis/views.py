@@ -155,7 +155,7 @@ class Course_detail(generic.DetailView):
         self.profile = Student.objects.all()
       
         context = super().get_context_data(**kwargs)
-        context['profile'] = self.profile
+        context['profile'] = self.profile 
         return context
 
 
@@ -221,3 +221,4 @@ class ContactView(generic.FormView):
 
 
 
+   

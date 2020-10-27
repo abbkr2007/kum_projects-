@@ -51,6 +51,9 @@ class Hr_Manager(models.Model):
 
     def __str__(self):
         return self.first_name
+        
+    def get_name(self):
+        return (f'{self.first_name +" " + " "+ self.middle_name +" " + " "+  self.last_name}')
 
 
     class Meta:
