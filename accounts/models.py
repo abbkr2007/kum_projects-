@@ -54,6 +54,9 @@ class Account_Manager(models.Model):
     def __str__(self):
         return self.first_name
 
+    def get_name(self):
+        return (f'{self.first_name +" " + " "+ self.middle_name +" " + " "+  self.last_name}')
+
 
     class Meta:
         db_table = ''
@@ -62,22 +65,44 @@ class Account_Manager(models.Model):
         verbose_name_plural = 'Account_Managers'
 
 
+class Tution_Fee(models.Model):
+    dept = models.ForeignKey(Department, on_delete=models.SET_NULL, blank=True, null=True)
+    total_tution = models.PositiveIntegerField()
+
+    def __str__(self):
+        return str(self.dept)
+
+
 
 class Control_Student_Payment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.SET_NULL, blank=True, null=True)
-    total_tution = models.PositiveIntegerField()
-    paid = models.PositiveIntegerField
-    text = models.CharField(max_length=150)
+    tuton_fee = models.ForeignKey(Tution_Fee, on_delete=models.SET_NULL, blank=True, null=True)
+    paid = models.PositiveIntegerField(blank=True, null=True)
+    invoice = models.CharField(max_length=100, null=True, blank=True)
+    # date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return str(self.student)
 
+    def payble(self):
+        bar = self.tuton_fee.total_tution - self.paid
+        return bar
+
+
+
+class Course_Fee(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.SET_NULL, blank=True, null=True)
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True)
+    course_fee = models.PositiveIntegerField()
 
     def __str__(self):
-        pass
+         return str(self.student)
 
-    class Meta:
-        db_table = ''
-        managed = True
-        verbose_name = 'Control_Student'
-        verbose_name_plural = 'Control_Students'
+
+
+
+
+
 
 
 # 1. Staff registration - ID, login detail

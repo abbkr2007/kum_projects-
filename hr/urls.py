@@ -31,6 +31,13 @@ urlpatterns = [
     path('list_of_student/<int:pk>/update/', views.Student_edit.as_view(), name='student_edit'),
 
 
+    # WorkLoad views......
+    path('add_workload/', views.Add_Workload.as_view(), name='add_workload'),
+    path('workload_list/', views.WorkLoad_View.as_view(), name='workload_list'),
+    path('workload_list/<int:pk>/update', views.WorkLoad_Update.as_view(), name='workload_update'),
+
+
+
 
     # Notice System for Lecturer
     path('add_notice_lecturer/', views.Add_Notice_For_Lecturer.as_view(), name='add_notice_lecturer'),

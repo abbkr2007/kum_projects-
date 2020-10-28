@@ -11,7 +11,7 @@ urlpatterns = [
     
     path('', include('dashboard.urls',)),
     
-    path('account/', include('accounts.urls', namespace='account')),
+    path('account/', include('accounts.urls', namespace='ac')),
     path('hr/', include('hr.urls', namespace='hr')),
     path('lecturer/', include('pis.urls', namespace='lecturer')),
     path('student/', include('sis.urls', namespace='student')),

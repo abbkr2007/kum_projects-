@@ -272,6 +272,70 @@ class Student_edit(generic.UpdateView):
 
 
 
+
+
+
+
+
+# Workload System
+
+class Add_Workload(generic.CreateView):
+    model = Work_Load
+    template_name = 'workload_create.html'
+    form_class = Workload_Create_Form
+
+    def form_valid(self, form):
+        form.instance.CustomUser = self.request.user
+        form.save()
+        return redirect("hr:workload_list")
+           
+    def get_context_data(self, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.profile
+        return context
+
+
+class WorkLoad_View(generic.ListView):
+    model = Work_Load
+    template_name = 'workload_list.html'
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.profile
+        return context
+
+
+class WorkLoad_Update(generic.UpdateView):
+    model = Work_Load
+    form_class = Workload_Update_Form
+    template_name = 'workload_update.html'
+    context_object_name = 'queryset'
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        # messages.success(self.request, 'Successfully updated your  car')
+        # return redirect(reverse("student:student_edit", kwargs={
+        #     'pk': form.instance.pk
+        # }))
+        return redirect('hr:workload_list')
+
+    def get_context_data(self, *args, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.profile
+        return context
+
+
+
+
+
+
+
+
 ## Notice Systems
 
 class Add_Notice_For_Lecturer(generic.CreateView):
@@ -357,6 +421,9 @@ class Notice_Delete(generic.DeleteView):
 
 
 
+
+
+
 ## Notice System For Student
 
 
@@ -377,8 +444,6 @@ class Add_Notice_For_Student(generic.CreateView):
         context['profile'] = self.profile
         return context
 
-
-       
 
 class Notice_List_Student(generic.ListView):
     model = Notice
@@ -407,9 +472,6 @@ class Notice_Create_Student(generic.CreateView):
         context = super().get_context_data(**kwargs)
         context['profile'] = self.profile
         return context
-
-
-
 
 class Notice_edit_Student(generic.UpdateView):
     model = Notice

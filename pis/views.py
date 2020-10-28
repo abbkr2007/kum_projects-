@@ -54,6 +54,7 @@ class Lecturer_edit(generic.UpdateView):
 
 
 
+
 class Course_by_teacher(generic.ListView):
     model = My_Course
     template_name = 'my_course.html'

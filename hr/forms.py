@@ -1,14 +1,14 @@
 
 from django import forms
-
+from django.forms import TextInput, MultiWidget, DateTimeField
 from sis.models import *
 from pis.models import *
-
 
 
 class DateInput(forms.DateInput):
     input_type = 'date'
 
+# class DateTimeField(forms.DateTimeField)
 
 # Student's Forms
 
@@ -18,6 +18,7 @@ class Student_Profile_Edit_Form(forms.ModelForm):
         model = Student
         fields = '__all__'
         # exclude = ['user', 'image']
+        
         widgets = {
             'date_of_birth':DateInput(),
             'date_of_admission': DateInput(),
@@ -61,6 +62,44 @@ class Lecturer_Profile_Edit_Form (forms.ModelForm):
 
         }
 
+
+
+# Workload Forms
+
+
+class Workload_Update_Form(forms.ModelForm):
+    class Meta:
+        model = Work_Load
+        fields = '__all__'
+
+        widgets = {
+            'date':DateInput(),
+            'date1': DateInput(),
+            'date2': DateInput(),
+            'date3': DateInput(),
+            'date4': DateInput(),
+            'date5': DateInput(),
+
+        }
+
+class Workload_Create_Form(forms.ModelForm):
+    class Meta:
+        model = Work_Load
+        fields = '__all__'
+
+        
+        widgets = {
+            'date':DateInput(),
+            'date1': DateInput(),
+            'date2': DateInput(),
+            'date3': DateInput(),
+            'date4': DateInput(),
+            'date5': DateInput(),
+
+        }
+
+
+  
 
 # 'Notice' for lecturer
 
