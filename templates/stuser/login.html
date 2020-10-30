@@ -1,3 +1,46 @@
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+{% if form.non_field_errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {% for error in form.non_field_errors %}
+	<p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+  {% endfor %}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+<div class="row">
+<div class="col-lg-4 col-md-6 col-sm-8 col-12">
+  <h2>Log in</h2>
+  <form  action ="{% url 'account_login' %}" method="post" novalidate>
+	{% csrf_token %}
+	<input type="hidden" name="next" value="{{ next }}">
+	{{ form}}
+
+	<button type="submit" class="btn btn-primary">Log in</button>
+  </form>
+
+</div>
+</div>
+</body>
+</html>
+
+
+
+{% comment %}
+
 <!DOCTYPE html>
 <html>
 
@@ -112,3 +155,8 @@
 
 <!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:32:30 GMT -->
 </html>
+
+
+  
+
+{% endcomment %}

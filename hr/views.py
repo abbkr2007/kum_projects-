@@ -10,6 +10,12 @@ from django.views.generic.list import MultipleObjectMixin
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum, Count, Q
 from itertools import chain
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from stuser.decorators import hr_required
+
+
 from .models import *
 from .forms import *
 from sis.models import *
@@ -31,6 +37,7 @@ def get_lecturer(user):
 
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Student_Search(generic.View):
     
     def get(self, request, *args, **kwargs):
@@ -51,6 +58,8 @@ class Student_Search(generic.View):
         }
         return render(request, 'search_results.html', context)
 
+
+@method_decorator([login_required, hr_required], name='dispatch')
 class Lecturer_Search(generic.View):
     
     def get(self, request, *args, **kwargs):
@@ -102,6 +111,7 @@ class Lecturer_Search(generic.View):
 
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Hr_profile(generic.TemplateView):
     model = Hr_Manager
     template_name = 'hr_profile.html'
@@ -120,6 +130,7 @@ class Hr_profile(generic.TemplateView):
 # Control Lecturer's 
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Lecturer_Create(generic.CreateView):
     model = Lecturer
     form_class = Lecturer_Create_Form
@@ -141,6 +152,7 @@ class Lecturer_Create(generic.CreateView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Lecturer_List(generic.ListView):
     model = Lecturer
     template_name = 'lecturer_list.html'
@@ -155,6 +167,7 @@ class Lecturer_List(generic.ListView):
     
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Lecturer_About(generic.DetailView):
     model = Hr_Manager
     template_name = 'lecturer_about.html'
@@ -167,6 +180,7 @@ class Lecturer_About(generic.DetailView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Lecturer_edit(generic.UpdateView):
     model = Lecturer
     form_class = Lecturer_Profile_Edit_Form
@@ -194,11 +208,47 @@ class Lecturer_edit(generic.UpdateView):
 
 
 
+## control Attendance
+
+class Select_subject_lecturer(generic.ListView):
+    model = Subject_Attendence
+    template_name = 'subject_lecturer.html'
+    context_object_name = 'queryset'
+
+
+    def get_context_data(self, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.profile
+        return context
+    
+
+
+class Attendance_create_subject(generic.CreateView):
+    model = Subject_Attendence
+    form_class = Student_Attendance_Form
+    template_name = 'attendance_edit_subject.html'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        return context
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        return redirect('hr:select_sub_teacher')
+
+
+
+
 
 
 # Student Control Plan
 # Student Control Plan
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Student_Create(generic.CreateView):
     model = Student
     form_class = Student_Create_Form
@@ -220,6 +270,7 @@ class Student_Create(generic.CreateView):
 
   
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Student_List(generic.ListView):
     model = Student
     template_name = 'student_list.html'
@@ -234,6 +285,7 @@ class Student_List(generic.ListView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Student_About(generic.DetailView):
     model = Student
     template_name = 'student_about.html'
@@ -247,6 +299,7 @@ class Student_About(generic.DetailView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Student_edit(generic.UpdateView):
     model = Student
     form_class = Student_Profile_Edit_Form
@@ -279,6 +332,7 @@ class Student_edit(generic.UpdateView):
 
 # Workload System
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Add_Workload(generic.CreateView):
     model = Work_Load
     template_name = 'workload_create.html'
@@ -296,6 +350,7 @@ class Add_Workload(generic.CreateView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class WorkLoad_View(generic.ListView):
     model = Work_Load
     template_name = 'workload_list.html'
@@ -308,6 +363,7 @@ class WorkLoad_View(generic.ListView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class WorkLoad_Update(generic.UpdateView):
     model = Work_Load
     form_class = Workload_Update_Form
@@ -338,6 +394,7 @@ class WorkLoad_Update(generic.UpdateView):
 
 ## Notice Systems
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Add_Notice_For_Lecturer(generic.CreateView):
     model = Notice_Files_of_lecturer
     template_name = 'add_notice_lecturer.html'
@@ -357,6 +414,7 @@ class Add_Notice_For_Lecturer(generic.CreateView):
 
        
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_List(generic.ListView):
     model = Notice_of_lecturer
     template_name = 'notice.html'
@@ -369,6 +427,7 @@ class Notice_List(generic.ListView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_Create(generic.CreateView):
     model = Notice_of_lecturer
     template_name = 'notice_create.html'
@@ -388,6 +447,7 @@ class Notice_Create(generic.CreateView):
 
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_edit_Lecturer(generic.UpdateView):
     model = Notice_of_lecturer
     form_class = Notice_Create_Form_Edit
@@ -411,6 +471,7 @@ class Notice_edit_Lecturer(generic.UpdateView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_Delete(generic.DeleteView):
     model = Notice_of_lecturer
     success_url = reverse_lazy('hr:notice_list')
@@ -428,6 +489,7 @@ class Notice_Delete(generic.DeleteView):
 
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Add_Notice_For_Student(generic.CreateView):
     model = Notice_Files
     template_name = 'add_notice_student.html'
@@ -445,6 +507,7 @@ class Add_Notice_For_Student(generic.CreateView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_List_Student(generic.ListView):
     model = Notice
     template_name = 'notice_list_student.html'
@@ -457,6 +520,8 @@ class Notice_List_Student(generic.ListView):
         return context
 
 
+
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_Create_Student(generic.CreateView):
     model = Notice
     template_name = 'notice_create_student.html'
@@ -473,6 +538,8 @@ class Notice_Create_Student(generic.CreateView):
         context['profile'] = self.profile
         return context
 
+
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_edit_Student(generic.UpdateView):
     model = Notice
     form_class = Notice_Create_Form_Edit_Student
@@ -496,6 +563,7 @@ class Notice_edit_Student(generic.UpdateView):
         return context
 
 
+@method_decorator([login_required, hr_required], name='dispatch')
 class Notice_Delete_Student(generic.DeleteView):
     model = Notice
     success_url = reverse_lazy('hr:notice_list_student')

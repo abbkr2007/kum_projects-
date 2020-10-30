@@ -10,7 +10,7 @@ app_name = 'student'
 urlpatterns = [
 
     path('profile/',views.Student_profile.as_view(), name='profile'),
-    path('profile/<int:pk>/update/', views.Student_edit.as_view(), name='student_edit'),
+    # path('profile/<int:pk>/update/', views.Student_edit.as_view(), name='student_edit'),
 
     path('material/',views.Course_metarial.as_view(), name='material'),
     

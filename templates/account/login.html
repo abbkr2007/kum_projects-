@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html>
 
@@ -40,20 +41,22 @@
 
 
 				<form action ="{% url 'account_login' %}" method="post" class="login100-form validate-form">
-                    {% csrf_token %}
+					{% csrf_token %}
+					<input type="hidden" name="next" value="{{ next }}">
+				
 					<span class="">
 						<img alt="" src="{% static 'logo/kdj_uni.png' %}" style="width:100%;">
 					</span>
 					<span class="login100-form-title  p-t-27">
 						Log in
 					</span>
-    <p style=" color:#276C2A; padding-bottom:20px; font-size:16px; text-align: center;">Khadija University Portal</p>
+       <p style=" color:#276C2A; padding-bottom:20px; font-size:16px; text-align: center;">Khadija University Portal</p>
     
 					<!--<div class="wrap-input100 validate-input" data-validate="Enter username">-->
 					<!--	<input class="input100" type="text" name="username" placeholder="Username">-->
 					<!--	<span class="focus-input100" data-placeholder="&#xf207;"></span>-->
                     <!--</div>-->
-                    
+                 <b style="color: red;">    {{form.non_field_errors}}  </b>
 
 					<input class="i_ab_style" type="email" name="login" placeholder="Username" required_id=id_login>
                     <input class="i_ab_style" type="password" name="password" placeholder="Password" required_id=id_password>
@@ -86,6 +89,8 @@
 					<div>
 						<br />
 					</div>
+
+			
 					<!--<div class="text-center p-t-30">-->
 					<!--	<a class="txt1" href="forgot_password.html">-->
 					<!--		Forgot Password?-->

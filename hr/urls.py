@@ -24,6 +24,15 @@ urlpatterns = [
     path('list_of_lecturer/<int:pk>/update/', views.Lecturer_edit.as_view(), name='lecturer_edit'),
 
 
+    #Attendanece
+    path('select_sub_teacher/', views.Select_subject_lecturer.as_view(), name='select_sub_teacher'),
+    path('select_subject/',views.Attendance_create_subject.as_view(), name='select_subject'),
+    
+
+
+    # path('attendance/take_attendance/',views.Attendance_create.as_view(), name='attendence_create'),
+
+
     # Student Views.......
     path('add_student/', views.Student_Create.as_view(), name='add_student'),
     path('list_of_student/', views.Student_List.as_view(), name='list_of_student'),

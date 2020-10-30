@@ -4,12 +4,15 @@ from django.urls import reverse_lazy, reverse
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from stuser.models import CustomUser
 from django.views.generic.list import MultipleObjectMixin
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from stuser.decorators import sis_required
 from .models import *
 from .forms import *
 
@@ -19,6 +22,8 @@ def get_booker(user):
         return qs[0]
     return None
 
+
+@method_decorator([login_required, sis_required], name='dispatch')
 class Student_profile(generic.TemplateView):
     model = Student
     template_name = 'student_profile.html'
@@ -33,36 +38,15 @@ class Student_profile(generic.TemplateView):
         return context
 
 
-class Student_edit(generic.UpdateView):
-    model = Student
-    form_class = Student_Profile_Form
-    template_name = 'edit_student.html'
-    context_object_name = 'queryset'
 
-    def form_valid(self, form):
-        form.instance.CustomUser = get_booker(self.request.user)
-        form.save()
-        # messages.success(self.request, 'Successfully updated your  car')
-        return redirect(reverse("student:student_edit", kwargs={
-            'pk': form.instance.pk
-        }))
-
-    def get_context_data(self, **kwargs):
-        self.profile = Student.objects.all()
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Update'
-        context['profile'] = self.profile
-        return context
-
-
+@method_decorator([login_required, sis_required], name='dispatch')
 class Course_metarial(generic.View):
-
     def get(self, *args, **kwargs):
         profile = Student.objects.all()
-        department = Department.objects.filter(user=self.request.user)
-        program = Program.objects.filter(user=self.request.user)
-        course = Course.objects.filter(user=self.request.user)
-        like = Course.objects.filter(user=self.request.user).annotate(total_credit=Sum('subject__credit'))
+        department = Department.objects.filter(student__user=self.request.user)
+        program = Program.objects.filter(student__user=self.request.user)
+        course = Course.objects.filter(student__user=self.request.user)
+        like = Course.objects.filter(student__user=self.request.user).annotate(total_credit=Sum('subject__credit'))
 
         context = {
             'dept':department,
@@ -75,6 +59,7 @@ class Course_metarial(generic.View):
 
 
 
+@method_decorator([login_required, sis_required], name='dispatch')
 class Program_structure(generic.View):
 
     def get(self, *args, **kwargs):
@@ -107,7 +92,7 @@ class Department_courses(generic.ListView):
     paginate_by = 1
 
     def get_context_data(self, **kwargs):
-        profile = Student.objects.all()
+        profile = Student.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         return context
@@ -162,12 +147,13 @@ class Course_detail(generic.DetailView):
 
 
 
+@method_decorator([login_required, sis_required], name='dispatch')
 class Notice_files(generic.TemplateView):
     model = Student
     template_name = 'notice_student.html'
 
     def get_context_data(self, **kwargs):
-        profile = Student.objects.filter()
+        profile = Student.objects.filter(user=self.request.user)
         notice = Notice.objects.all()
         context = super().get_context_data(**kwargs)
         context = {
@@ -194,6 +180,7 @@ class Event(generic.TemplateView):
         }
         return context
 
+@method_decorator([login_required, sis_required], name='dispatch')
 class ContactView(generic.FormView):
     # model = Category
     form_class = ContactForm
@@ -201,7 +188,7 @@ class ContactView(generic.FormView):
     template_name = 'contact.html'
 
     def get_context_data(self, **kwargs):
-        profile = Student.objects.all()
+        profile = Student.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         return context

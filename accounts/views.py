@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect, reverse
 from django.views import generic
 
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from stuser.decorators import ac_required
+
+
 
 from .models import *
 
 from .forms import *
 
-
+@method_decorator([login_required, ac_required], name='dispatch')
 class Ac_profile(generic.TemplateView):
     model = Account_Manager
     template_name = 'account_profile.html'
@@ -23,6 +28,7 @@ class Ac_profile(generic.TemplateView):
 
 
 
+@method_decorator([login_required, ac_required], name='dispatch')
 class Add_Fees(generic.CreateView):
     model = Control_Student_Payment
     template_name = 'add_fees.html'
@@ -40,6 +46,7 @@ class Add_Fees(generic.CreateView):
         return context
 
 
+@method_decorator([login_required, ac_required], name='dispatch')
 class Fees(generic.ListView):
     model = Control_Student_Payment
     template_name = 'fees.html'
@@ -55,8 +62,7 @@ class Fees(generic.ListView):
 
 
 
-
-
+@method_decorator([login_required, ac_required], name='dispatch')
 class Edit_Tution(generic.UpdateView):
     model = Control_Student_Payment
     form_class = Fee_Create_Form_Edit

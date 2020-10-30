@@ -103,9 +103,8 @@
                                                   
                                                     <th> No </th>
                                                     <th> Student ID </th>
-                                                    <th> Total Attend </th>
-                                                    <th> Present </th>
-                                                    <th> Absent </th>
+                                                    <th> Total Present </th>
+                                                    <th> Total Absent </th>
                                                     <th> Code </th>
                                                     <th> Subject Name </th>
                                              
@@ -119,21 +118,21 @@
                                                 
                                                     <td> {{forloop.counter}} </td>
                                                     <td> {{a.student.registration_number}} </td>
-                                                    <td> {{a.preset_days}} </td>
+                                                    <td> {{a.present_days}} </td>
                                                     <td> {{a.absent_days}} </td>
                                                     
                                                         <td>
-                                                            <a href="{{a.get_update_url}}">     {{a.attend}} 
-                                                             <span class="label label-sm label-success">Update</span> </a>
+                                                            <span class="label label-sm label-success">Update</span>
+                                                            <a href="{{a.get_update_url}}">  {{a.subject.subject.code}}    </a>     
+                                                           
                                                         </td>
-                                                        <td>
-                                                             {{a.subject.subject.code}} 
-                                                        </td>
+                                                    
                                                     <td>
                                                        {{a.subject.subject.name}}
 
                                                      
                                                     </td>
+                                                    
                                                    
                                                 </tr>
                                                                    

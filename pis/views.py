@@ -2,8 +2,12 @@ from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
-
 from django.views import generic
+
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from stuser.decorators import pis_required
+
 from .models import *
 from .forms import *
 
@@ -15,6 +19,8 @@ def get_booker(user):
     return None
 
 
+
+@method_decorator([login_required, pis_required], name='dispatch')
 class Lecturer_profile(generic.TemplateView):
     model = Lecturer
     template_name = 'lecturer_profile.html'
@@ -29,32 +35,7 @@ class Lecturer_profile(generic.TemplateView):
 
 
 
-class Lecturer_edit(generic.UpdateView):
-    model = Lecturer
-    form_class = Lecturer_Profile_Form
-    template_name = 'lecturer_edit.html'
-    context_object_name = 'queryset'
-
-    def form_valid(self, form):
-        form.instance.CustomUser = get_booker(self.request.user)
-        form.save()
-        # messages.success(self.request, 'Successfully updated your  car')
-        return redirect(reverse("lecturer:lecturer_edit", kwargs={
-            'pk': form.instance.pk
-        }))
-
-    def get_context_data(self, **kwargs):
-        self.profile = Lecturer.objects.filter(user=self.request.user)
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Update'
-        context['profile'] = self.profile
-        return context
-
-
-
-
-
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Course_by_teacher(generic.ListView):
     model = My_Course
     template_name = 'my_course.html'
@@ -69,6 +50,7 @@ class Course_by_teacher(generic.ListView):
         return context
 
 
+@method_decorator([login_required, pis_required], name='dispatch')
 class My_Course_detail(generic.DetailView):
     model = My_Course
     template_name = 'my_course_detail.html'
@@ -89,8 +71,7 @@ class My_Course_detail(generic.DetailView):
 
 
 
-
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Attendance_List_View(generic.ListView):
     model = Student_Attendence
     template_name = 'attend_list.html'
@@ -98,37 +79,15 @@ class Attendance_List_View(generic.ListView):
 
     def get_context_data(self, *args, **kwargs):
         profile = Lecturer.objects.all()
-        semester_course = Subject_Attendence.objects.all()
+        semester_course = Subject_Attendence.objects.filter(lecturer__user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         context['test'] = semester_course
         return context
 
 
-class Attendance_Update_View(generic.UpdateView):
-    model = Student_Attendence
-    template_name = 'attend_update.html'
-    form_class = Attendance_Form
-    context_object_name = 'queryset'
 
-    def get_context_data(self, *args, **kwargs):
-        profile = Lecturer.objects.all()
-        semester_course = Subject_Attendence.objects.all()
-        context = super().get_context_data(**kwargs)
-        context['profile'] = profile
-        context['test'] = semester_course
-        return context
-
-    def form_valid(self, form):
-        form.instance.CustomUser = get_booker(self.request.user)
-        form.save()
-        return redirect(reverse("lecturer:student_attendance_edit", kwargs={
-            'pk': form.instance.pk
-        }))
-
-
-
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Student_attendance_subject(generic.ListView):
     model = Subject_Attendence
     template_name = 'attendence.html'
@@ -136,14 +95,14 @@ class Student_attendance_subject(generic.ListView):
 
     def get_context_data(self, *args, **kwargs):
         profile = Lecturer.objects.all()
-        semester_course = Subject_Attendence.objects.all()
+        semester_course = Subject_Attendence.objects.filter(lecturer__user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         context['test'] = semester_course
         return context
 
 
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Attendence_detail(generic.DetailView):
     model = Subject_Attendence
     template_name = 'attendence_details.html'
@@ -151,32 +110,14 @@ class Attendence_detail(generic.DetailView):
 
     def get_context_data(self, *args, **kwargs):
         profile = Lecturer.objects.all()
-        semester_course = Student_Attendence.objects.all()
+        semester_course = Student_Attendence.objects.filter(lecturer__user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         context['test'] = semester_course
         return context
 
 
-
-class Attendance_create_subject(generic.CreateView):
-    model = Subject_Attendence
-    form_class = Student_Attendance_Form
-    template_name = 'attendance_edit_subject.html'
-
-    def get_context_data(self, *args, **kwargs):
-        profile = Lecturer.objects.all()
-        context = super().get_context_data(**kwargs)
-        context['profile'] = profile
-        return context
-
-    def form_valid(self, form):
-        form.instance.CustomUser = get_booker(self.request.user)
-        form.save()
-        return redirect('lecturer:attendance')
-
-
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Attendance_create(generic.CreateView):
     model = Student_Attendence
     form_class = Student_Form
@@ -198,6 +139,27 @@ class Attendance_create(generic.CreateView):
 
 
 
+@method_decorator([login_required, pis_required], name='dispatch')
+class Attendance_Update_View(generic.UpdateView):
+    model = Student_Attendence
+    template_name = 'attend_update.html'
+    form_class = Attendance_Form
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Lecturer.objects.all()
+        semester_course = Subject_Attendence.objects.filter(lecturer__user=self.request.user)
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        context['test'] = semester_course
+        return context
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        return redirect(reverse("lecturer:student_attendance_edit", kwargs={
+            'pk': form.instance.pk
+        }))
 
 
 
@@ -225,14 +187,14 @@ class Attendance_create(generic.CreateView):
 
 
 
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Workload(generic.TemplateView):
     model = Work_Load
     template_name = 'workload.html'
 
     def get_context_data(self, *args, **kwargs):
         profile = Lecturer.objects.all()
-        workload = Work_Load.objects.all()
+        workload = Work_Load.objects.filter(lecturer__user=self.request.user)
         context = super().get_context_data(**kwargs)
         context = {
             'profile':profile,
@@ -242,7 +204,7 @@ class Workload(generic.TemplateView):
 
 
 
-
+@method_decorator([login_required, pis_required], name='dispatch')
 class Notice_files(generic.TemplateView):
     model = Lecturer
     template_name = 'notice_lecturer.html'
@@ -262,7 +224,8 @@ class Notice_files(generic.TemplateView):
 
 
 
-        
+
+@method_decorator([login_required, pis_required], name='dispatch')
 class ContactView(generic.FormView):
     # model = Category
     form_class = ContactForm

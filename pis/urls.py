@@ -10,10 +10,10 @@ app_name = 'lecturer'
 urlpatterns = [
 
     path('profile/',views.Lecturer_profile.as_view(), name='profile'),
-    path('profile/<int:pk>/update/', views.Lecturer_edit.as_view(), name='lecturer_edit'),
 
      
     path('attend/',views.Attendance_List_View.as_view(), name='attend'),
+
     path('attend/<int:pk>/update',views.Attendance_Update_View.as_view(), name='student_attendance_edit'),
 
 
@@ -26,15 +26,11 @@ urlpatterns = [
 
     
 
-
-
-  
-
     path('attendance/',views.Student_attendance_subject.as_view(), name='attendance'),
-    path('attendance/select_subject/',views.Attendance_create_subject.as_view(), name='select_subject'),
-    
     path('attendance/take_attendance/',views.Attendance_create.as_view(), name='attendence_create'),
     path('attendance/<int:pk>/',views.Attendence_detail.as_view(), name='student_attendance'),
+
+
 
 
 

@@ -30,8 +30,7 @@ INSTALLED_APPS = [
     'pis',
     'hr',
     'accounts',
-    
-    'student',
+
     'stuser',
     'dashboard',
 
@@ -140,12 +139,16 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend'
 )
 
-LOGIN_REDIRECT_URL = 'app:index'
+LOGIN_URL = "account_login"
 
-ACCOUNT_LOGOUT_REDIRECT_URL ="/accounts/login"
+LOGIN_REDIRECT_URL = 'stuser:home'
+
+ACCOUNT_LOGOUT_REDIRECT_URL ="/accounts/login/"
+
 ACCOUNT_LOGOUT_ON_GET = True
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 ACCOUNT_SESSION_REMEMBER = True # new
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None

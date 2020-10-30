@@ -1,0 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: [example.com] Please Confirm Your E-mail Address
+From: webmaster@localhost
+To: middysis@gmail.com
+Date: Fri, 30 Oct 2020 05:04:42 -0000
+Message-ID: <160403428245.2740.426595101464751411@Ghost>
+
+Hello from example.com!
+
+You're receiving this e-mail because user middysis@gmail.com has given yours as an e-mail address to connect their account.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/Mw:1kYMag:VBRgH12QTbGRnwFEzmd4tUaof947QC5KmLOcj-hGf_M/
+
+Thank you from example.com!
+example.com
+-------------------------------------------------------------------------------

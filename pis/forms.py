@@ -22,29 +22,6 @@ class Lecturer_Profile_Form(forms.ModelForm):
 
 
 
-
-class Student_Attendance_Form(forms.ModelForm):
-
-    class Meta:
-        model = Subject_Attendence
-        exclude = ['lecturer']
-        widgets = {
-            'date':DateInput(),
-            # 'date_of_admission': DateInput(),
-
-        }
-
-class Attendance_Form(forms.ModelForm):
-
-    class Meta:
-        model = Student_Attendence
-        exclude = ['lecturer']
-        widgets = {
-            'date':DateInput(),
-            # 'date_of_admission': DateInput(),
-
-        }
-
 class Student_Form(forms.ModelForm):
 
     class Meta:
@@ -57,6 +34,16 @@ class Student_Form(forms.ModelForm):
         }
 
 
+class Attendance_Form(forms.ModelForm):
+
+    class Meta:
+        model = Student_Attendence
+        exclude = ['lecturer']
+        widgets = {
+            'date':DateInput(),
+            # 'date_of_admission': DateInput(),
+
+        }
 
 
 

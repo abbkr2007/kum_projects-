@@ -62,6 +62,22 @@ class Lecturer_Profile_Edit_Form (forms.ModelForm):
 
         }
 
+## Attendence Forms
+
+
+class Student_Attendance_Form(forms.ModelForm):
+
+    class Meta:
+        model = Subject_Attendence
+        fields = '__all__'
+        widgets = {
+            'date':DateInput(),
+            # 'date_of_admission': DateInput(),
+
+        }
+
+
+
 
 
 # Workload Forms
@@ -137,3 +153,5 @@ class Notice_Create_Form_Edit_Student(forms.ModelForm):
     class Meta:
         model = Notice
         fields = '__all__'
+
+

@@ -57,7 +57,6 @@ class Student(models.Model):
     class Meta:
         db_table = ''
         managed = True
-        ordering = ['-join']
         verbose_name = 'Student'
         verbose_name_plural = 'Students'
         
@@ -221,11 +220,8 @@ class Semester(models.Model):
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, related_name='semester_dept', blank=True, null=True)
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, related_name='semester_program', blank=True, null=True)
     # course = models.ForeignKey(Course, related_name='semester_course', on_delete=models.SET_NULL, blank=True, null=True)
-
     course = models.ManyToManyField(Course, related_name='semester_course', blank=True)
-
     student = models.ManyToManyField(Student, related_name='semester_student', blank=True)
-
     session = models.ForeignKey(Semester_Session, on_delete=models.SET_NULL, related_name='semester_program', blank=True, null=True)
     code = models.CharField(max_length=40)
     advisor = models.ForeignKey(to='pis.Lecturer', on_delete=models.SET_NULL, related_name='semester_advisor', blank=True, null=True)
