@@ -1,0 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: [example.com] Please Confirm Your E-mail Address
+From: webmaster@localhost
+To: ac@gmail.com
+Date: Fri, 30 Oct 2020 19:51:20 -0000
+Message-ID: <160408748072.3284.5689236991562045585@Ghost.www.tendawifi.com>
+
+Hello from example.com!
+
+You're receiving this e-mail because user ac@gmail.com has given yours as an e-mail address to connect their account.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/OA:1kYaQi:iLA1i5LUJ8RO8W4gxBfj5o1817IhHQdeebnuzcOq3_A/
+
+Thank you from example.com!
+example.com
+-------------------------------------------------------------------------------
