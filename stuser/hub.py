@@ -11,7 +11,7 @@ def home(request):
         elif request.user.is_hr:
             return redirect('hr:profile')
         elif request.user.is_account:
-            return redirect('account:profile')
+            return redirect('ac:profile')
         elif request.user.is_superuser:
             return HttpResponse('<a href="http://127.0.0.1:8000/admin/">Yes, Please</a>')
         else:

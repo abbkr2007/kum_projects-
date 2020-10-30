@@ -29,6 +29,11 @@ urlpatterns = [
     path('select_subject/',views.Attendance_create_subject.as_view(), name='select_subject'),
     
 
+    # Course Managerment Views......]
+    path('lecturer_courses_create/', views.Lecturer_Course_Create.as_view(), name='lecturer_courses_create'),
+    path('lecturer_courses/', views.Course_For_Lecturer.as_view(), name='lecturer_courses'),
+    
+  
 
     # path('attendance/take_attendance/',views.Attendance_create.as_view(), name='attendence_create'),
 

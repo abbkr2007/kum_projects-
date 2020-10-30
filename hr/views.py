@@ -325,6 +325,68 @@ class Student_edit(generic.UpdateView):
 
 
 
+# Course Management
+
+
+@method_decorator([login_required, hr_required], name='dispatch')
+class Course_For_Lecturer(generic.ListView):
+    model = My_Course
+    template_name = 'course_for_lecturer.html'
+    context_object_name = 'queryset'
+
+    
+    def get_context_data(self, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.profile
+        return context
+
+
+@method_decorator([login_required, hr_required], name='dispatch')
+class Lecturer_Course_Create(generic.CreateView):
+    model = My_Course
+    form_class = Lecturer_Course_Create_Form
+    template_name = 'lecturer_course_create.html'
+    context_object_name = 'queryset'
+
+    def form_valid(self, form):
+        form.instance.CustomUser = self.request.user
+        form.save()
+        return redirect('hr:lecturer_courses')
+   
+    def get_context_data(self, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['profile'] = self.profile
+        return context
+
+  
+@method_decorator([login_required, hr_required], name='dispatch')
+class Student_edit(generic.UpdateView):
+    model = Student
+    form_class = Student_Profile_Edit_Form
+    template_name = 'edit_student.html'
+    context_object_name = 'queryset'
+
+    def form_valid(self, form):
+        form.instance.CustomUser = get_booker(self.request.user)
+        form.save()
+        # messages.success(self.request, 'Successfully updated your  car')
+        # return redirect(reverse("student:student_edit", kwargs={
+        #     'pk': form.instance.pk
+        # }))
+        return redirect('hr:list_of_student')
+            
+
+    def get_context_data(self, **kwargs):
+        self.profile = Hr_Manager.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Update'
+        context['profile'] = self.profile
+        return context
+
+
+
 
 
 

@@ -77,7 +77,18 @@ class Student_Attendance_Form(forms.ModelForm):
         }
 
 
+# Lecturer Course Form
 
+class Lecturer_Course_Create_Form(forms.ModelForm):
+
+    class Meta:
+        model = My_Course
+        fields = '__all__'
+        # widgets = {
+        #     'date':DateInput(),
+        #     # 'date_of_admission': DateInput(),
+
+        # }
 
 
 # Workload Forms

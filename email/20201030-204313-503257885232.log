@@ -1,0 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: [example.com] Please Confirm Your E-mail Address
+From: webmaster@localhost
+To: sifatsac@gmail.com
+Date: Fri, 30 Oct 2020 14:43:13 -0000
+Message-ID: <160406899342.5480.13267212815822068657@Ghost>
+
+Hello from example.com!
+
+You're receiving this e-mail because user sifatsac@gmail.com has given yours as an e-mail address to connect their account.
+
+To confirm this is correct, go to http://127.0.0.1:8000/accounts/confirm-email/NA:1kYVcX:Qa81AgP9zjIn8jxs1dDMJhh8b4srIBLB3a8gxeAXsYI/
+
+Thank you from example.com!
+example.com
+-------------------------------------------------------------------------------

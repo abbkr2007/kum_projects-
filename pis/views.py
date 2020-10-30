@@ -35,6 +35,7 @@ class Lecturer_profile(generic.TemplateView):
 
 
 
+
 @method_decorator([login_required, pis_required], name='dispatch')
 class Course_by_teacher(generic.ListView):
     model = My_Course
