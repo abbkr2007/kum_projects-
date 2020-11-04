@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Hello From Message</h3>
+
+
+    {% for i in data %}
+
+    {{i.message}} 
+      
+    {% endfor %}
+
+
+
+    <form method="POST" action="{% url 'student:message' %}">
+     {% csrf_token %}
+        <div class="card-body">
+           
+            <div class="form-group">
+                <label>Leave A message </label>
+                <input type="message" name="message" class="form-control" />
+            </div>
+<!-- 
+            <div class="form-group">
+                <label>Leave Reason </label>
+                <textarea name="message" class="form-control" rows="6" placeholder="Leave Messge"></textarea>
+            </div> -->
+
+
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Apply for Leave</button>
+        </div>
+
+    </form>
+
+</body>
+</html>

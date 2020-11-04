@@ -12,10 +12,12 @@ urlpatterns = [
     
     path('pustsomething/', include('dashboard.urls',)),
     
-    path('account/', include('accounts.urls', namespace='ac')),
-    path('hr/', include('hr.urls', namespace='hr')),
-    path('lecturer/', include('pis.urls', namespace='lecturer')),
+    
     path('student/', include('sis.urls', namespace='student')),
+    path('lecturer/', include('pis.urls', namespace='lecturer')),
+    path('hr/', include('hr.urls', namespace='hr')),
+    path('account/', include('accounts.urls', namespace='ac')),
+    path('adm/', include('adm.urls', namespace='adm')),
 
   
     

@@ -208,4 +208,40 @@ class ContactView(generic.FormView):
 
 
 
-   
+
+class Message_View(generic.View):
+
+    def get(self, *args, **kwargs):
+
+        profile = get_object_or_404(Student, user=self.request.user)
+        data = Student_Message.objects.filter(student=profile)
+        
+        context = {
+            'data':data,
+           
+        }
+        return render(self.request, 'message.html', context)
+
+
+
+def message_view(request):
+    if request.method != "POST":
+        # messages.error(request, "Invalid Method")
+        print("it's not POST")
+        return redirect('student:message')
+    else:
+        message = request.POST.get('message')
+        data = get_object_or_404(Student, user=request.user)
+        try:
+            leave_report = Student_Message(student=data, message=message, message_status=0)
+            leave_report.save()
+            print(leave_report)
+            print("hi from else")
+            # messages.success(request, "Applied for Leave.")
+            return redirect('student:message')
+        except:
+            print("it's doesn't work")
+            # messages.error(request, "Failed to Apply Leave")
+            return redirect('student:message')
+
+

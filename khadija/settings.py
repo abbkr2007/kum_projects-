@@ -30,6 +30,9 @@ INSTALLED_APPS = [
     'pis',
     'hr',
     'accounts',
+    'adm',
+    'ad',
+
 
     'stuser',
     'dashboard',

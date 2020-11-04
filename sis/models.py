@@ -21,7 +21,8 @@ class Student(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS, default='active')
     registration_number   = models.CharField(max_length=100, unique=True)
-    dept = models.ForeignKey('Department', related_name='student_department', on_delete=models.SET_NULL, blank=True, null=True)
+    # faculty = 
+    # dept = models.ForeignKey('Department', related_name='student_department', on_delete=models.SET_NULL, blank=True, null=True)
     first_name = models.CharField(max_length=40)
     middle_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40, blank=True)
@@ -212,6 +213,19 @@ class Department(models.Model):
             'pk': self.pk
         })
 
+
+class Faculty(models.Model):
+    name = models.CharField(max_length=80)
+    about = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Faculty'
+        verbose_name_plural = 'Facultys'
  
 
 class Semester(models.Model):
@@ -313,31 +327,19 @@ class Notice(models.Model):
 
 
 
+class Student_Message(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True )
+    message = models.TextField()
+    message_status = models.IntegerField(default=0)
+    sent_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.student)
+        
 
 
 
 
-
-# class ProgramStructure(models.Model):
-#     user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-#     department = models.ForeignKey('Department',related_name='department_status', on_delete=models.CASCADE, blank=True, null=True)
-#     program = models.ForeignKey('Program',related_name='pogram_status', on_delete=models.CASCADE, blank=True, null=True)
-#     course = models.ForeignKey('Course',related_name='course_status', on_delete=models.CASCADE, blank=True, null=True)
-
-#     faield = models.ManyToManyField(Subject,related_name='failed_subject_status', blank=True)
-#     passed = models.ManyToManyField(Subject,related_name='passed_subject_status', blank=True)
-#     nerver = models.ManyToManyField(Subject,related_name='never_subject_status', blank=True)
-#     current = models.ManyToManyField(Subject,related_name='curent_subject_status', blank=True)
-    
-#     def __str__(self):
-#         return str(self.user)
-
-#     class Meta:
-#         db_table = ''
-#         managed = True
-#         verbose_name = 'ProgramStructure'
-#         verbose_name_plural = 'ProgramStructures'
 
 
 

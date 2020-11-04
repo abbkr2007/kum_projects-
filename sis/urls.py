@@ -29,5 +29,7 @@ urlpatterns = [
     path('rules/', views.Notice_files.as_view(), name='rules'),
 
     path('contact/', views.ContactView.as_view(), name='contact'),
+
+    path('message/', views.Message_View.as_view(), name='message'),
             
 ]
