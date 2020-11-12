@@ -2,7 +2,7 @@
 from django import forms
 # from tinymce.widgets import TinyMCE
 # from tinymce import TinyMCE
-from .models import Student
+from .models import Student, Choice_Course
 
 
 
@@ -28,3 +28,17 @@ class ContactForm(forms.Form):
     email = forms.EmailField(required=True)
     name = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea, required=True)
+
+
+
+
+
+class RegForm(forms.ModelForm):
+
+    class Meta:
+        model = Choice_Course
+        fields = ['course']
+        exclude = ['student']
+        widgets = {
+            'course': forms.CheckboxSelectMultiple
+        }

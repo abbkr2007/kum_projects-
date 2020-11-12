@@ -38,7 +38,7 @@
 <!-- END HEAD -->
 
 <body
-	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-green green-sidebar-color logo-green">
 	<div class="page-wrapper">
 		<!-- start header -->
 		 {% include "base/header.html" %}
@@ -81,10 +81,16 @@
 											<header>COURSE Details</header>
 										
 										</div>
+
+										{% comment %}
+										  
+								
 										<div class="card-body ">
 											<div class="table-responsive">
 												<table class="table table-striped custom-table table-hover">
 													<thead style="color: white; background-color:green;">
+
+
 														<tr>
 															<th>No</th>
 															<th>Subject Name</th>
@@ -95,7 +101,7 @@
 														</tr>
 													</thead>
 													<tbody>
-                                                        {% for sub in queryset.subject.all  %}
+                                                        {% for sub in queryset.course.all  %}
                                                          
 														<tr>
                                                         
@@ -106,7 +112,7 @@
                                                             <td>{{sub.code}}</td>
                                                      
                                                             <td>{{sub.credit}}</td>
-                            <td><a href="{{sub.files.url}}" download><i class="material-icons">file_download</i></a> </td>
+                                 <td><a href="{{sub.files.url}}" download><i class="material-icons">file_download</i></a> </td>
                                                           
 													
 														</tr>
@@ -136,6 +142,70 @@
 												</table>
 											</div>
 										</div>
+										{% endcomment %}
+
+
+										<div class="card-body ">
+							
+											<div class="table-scrollable">
+												<table
+					class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+													>
+													<thead style="color:white; background-color:#28196e;">
+														<tr>
+															<th>S/N</th>
+															<th>Subject Name</th>
+															<th>Code</th>
+															<th>Credit</th>
+															<th>Materials</th>
+											
+														</tr>
+													</thead>
+		
+													<tbody>
+                                                        {% for sub in queryset.course.all  %}
+                                                         
+														<tr>
+                                                        
+															<td>{{forloop.counter}}
+															</td>
+                                                            <td>{{sub.name}}</td>
+                                                            
+                                                            <td>{{sub.code}}</td>
+                                                     
+                                                            <td>{{sub.credit}}</td>
+                                    <td><a href="{{sub.files.url}}" download><i class="material-icons">file_download</i></a> </td>
+                                                          
+													
+														</tr>
+														
+                                                         
+                                                        {% endfor %}
+                                                         
+														<tr>
+
+															<td>
+															</td>
+                                                            <td></td>
+                                                            
+                                                            <td><b> Total:</b></td>
+                                                              
+															<td> <b>{{queryset.total_credit}}</b>
+															</td>
+															<td></td>
+														</tr>
+														
+                                                         
+                                                  
+
+
+                                           
+                                                    </tbody>
+												</table>
+												{% include "pagination.html" %}
+											</div>
+										</div>
+
 									</div>
 								</div>
 							</div>

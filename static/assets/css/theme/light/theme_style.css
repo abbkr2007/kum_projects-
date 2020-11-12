@@ -164,11 +164,11 @@ hr{
 }
 a {
     text-shadow: none;
-    color: #337ab7;
+    color: #28196e;
 }
 a:hover {
     cursor: pointer;
-    color: #23527c
+    color: #28196e 
 }
 a:active,
 a:focus,
@@ -347,7 +347,7 @@ code {
 	background-color: #C46210 ;
 }
 .headerBadgeColor2{
-	 background-color: #673ab7 ;
+	 background-color: #28196e ;
 }
 .orange-bgcolor {
     background-color: #C46210 !important;
@@ -4069,7 +4069,7 @@ ul.chat.nice-chat {
     border-top: 3px solid #F39C12;
 }
 .card-topline-aqua {
-    border-top: 3px solid #00C0EF;
+    border-top: 3px solid #28196e;
 }
 .card-topline-lightblue {
     border-top: 3px solid #3C8DBC;
@@ -4081,7 +4081,7 @@ ul.chat.nice-chat {
     border-top: 3px solid #DD4B39;
 }
 .card-topline-purple {
-    border-top: 3px solid #ad5bff;
+    border-top: 3px solid #28196e ;
 }
 .card-topline-gray {
     border-top: 3px solid #ddd;
@@ -4706,15 +4706,21 @@ ul.activity-list .activity-desk h5 a {
 .table-scrollable>.table-bordered>thead>tr>th:last-child {
     border-right: 0
 }
-.table td,
+
 .table th,
-.card .table td,
 .card .table th,
-.card .dataTable td,
 .card .dataTable th {
-    padding: 15px 8px;
+    padding: 8px 8px;
     vertical-align: middle;
 }
+
+.table td,
+.card .table td,
+.card .dataTable td {
+    padding: 2px 8px;
+    vertical-align: middle;
+}
+
 .table td.valigntop {
     vertical-align: top;
 }

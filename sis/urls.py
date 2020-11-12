@@ -13,10 +13,13 @@ urlpatterns = [
     # path('profile/<int:pk>/update/', views.Student_edit.as_view(), name='student_edit'),
 
     path('material/',views.Course_metarial.as_view(), name='material'),
+
+    path('course_list/',views.Student_Course_Names.as_view(), name='course_list'),
     
     path('program_structure/',views.Program_structure.as_view(), name='program_structure'),
 
     path('department/',views.Department_courses.as_view(), name='departments'),
+    
     path('department/program/<int:pk>/', views.Dept_detail.as_view(), name='dept_detail'),
 
     path('department/program/course/<int:pk>/', views.Program_detail.as_view(), name='program_detail'),
@@ -31,5 +34,16 @@ urlpatterns = [
     path('contact/', views.ContactView.as_view(), name='contact'),
 
     path('message/', views.Message_View.as_view(), name='message'),
+
+
+
+
+    path('semester/', views.Semester_View.as_view(), name='semester'),
+
+
+
+
+
+    path('reg/', views.Course_Registration.as_view(), name='reg'),
             
 ]

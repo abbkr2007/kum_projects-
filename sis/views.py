@@ -42,7 +42,7 @@ class Student_profile(generic.TemplateView):
 @method_decorator([login_required, sis_required], name='dispatch')
 class Course_metarial(generic.View):
     def get(self, *args, **kwargs):
-        profile = Student.objects.all()
+        profile = Student.objects.filter(user=self.request.user)
         department = Department.objects.filter(student__user=self.request.user)
         program = Program.objects.filter(student__user=self.request.user)
         course = Course.objects.filter(student__user=self.request.user)
@@ -60,13 +60,32 @@ class Course_metarial(generic.View):
 
 
 @method_decorator([login_required, sis_required], name='dispatch')
+class Student_Course_Names(generic.ListView):
+    model = Choice_Course
+    template_name = 'student_course_name.html'
+    context_object_name = 'queryset'
+
+    def get_context_data(self, *args, **kwargs):
+        profile = Student.objects.filter(user=self.request.user)
+        total_credit = Choice_Course.objects.filter(student__user=self.request.user).aggregate(
+            total_credit=Sum('course__credit')
+        )['total_credit'] or 0
+
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        context['total'] = total_credit
+        return context
+
+        
+
+@method_decorator([login_required, sis_required], name='dispatch')
 class Program_structure(generic.View):
 
     def get(self, *args, **kwargs):
         profile = Student.objects.all()
         profilee = get_object_or_404(Student, user=self.request.user)
         program_structure = Course.objects.filter(student=profilee)
-        # program_structure = Course.objects.filter(student__user=self.request.user)
+
 
 
         credit = Course.objects.filter(student__user=self.request.user).annotate(total_no=Sum('subject__credit'))
@@ -82,14 +101,13 @@ class Program_structure(generic.View):
             'total_credit' : total_credit
         }
         return render(self.request, 'program_structure.html', context)
-
-
+  
 
 class Department_courses(generic.ListView):
     model = Department
     template_name = 'deparments.html'
     context_object_name = 'queryset'
-    paginate_by = 1
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         profile = Student.objects.filter(user=self.request.user)
@@ -98,11 +116,11 @@ class Department_courses(generic.ListView):
         return context
   
 
-class Dept_detail(generic.DetailView, MultipleObjectMixin):
+class Dept_detail(generic.DetailView, MultipleObjectMixin):  
     model = Department
     template_name = 'programs.html'
     context_object_name = 'queryset'
-    paginate_by = 1
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         self.profile = Student.objects.all()
@@ -116,11 +134,10 @@ class Dept_detail(generic.DetailView, MultipleObjectMixin):
 class Program_detail(generic.DetailView, MultipleObjectMixin):
     model = Program
     template_name = 'courses.html'
-    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         self.profile = Student.objects.all()
-        object_list = Course.objects.filter(program=self.object)
+        object_list = Semester.objects.filter(program=self.object)
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['program'] = Program.objects.all()
         context['profile'] = self.profile
@@ -128,10 +145,10 @@ class Program_detail(generic.DetailView, MultipleObjectMixin):
 
 
 class Course_detail(generic.DetailView):
-    model = Course
+    model = Semester
     template_name = 'course_detail.html'
-    queryset = Course.objects.annotate(
-        total_credit=Sum('subject__credit')
+    queryset = Semester.objects.annotate(
+        total_credit=Sum('course__credit')
     )
     context_object_name = 'queryset'
     
@@ -142,9 +159,6 @@ class Course_detail(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['profile'] = self.profile 
         return context
-
-
-
 
 
 @method_decorator([login_required, sis_required], name='dispatch')
@@ -204,6 +218,42 @@ class ContactView(generic.FormView):
             # messages.warning(self.request, "Your email didn't successfuly")
             return HttpResponse('Invalid header found.')
         return super(ContactView, self).form_valid(form)
+
+
+
+
+
+
+
+class Semester_View(generic.ListView):
+    model = Program
+    template_name = 'test/test.html'
+    context_object_name = 'queryset'
+
+
+
+
+@method_decorator([login_required, sis_required], name='dispatch')
+class Course_Registration(generic.CreateView):
+    model = Choice_Course  
+    template_name = 'test/reg.html'
+    form_class = RegForm
+    context_object_name = 'queryset'
+
+    def get_context_data(self, **kwargs):
+        profile = Student.objects.filter(user=self.request.user)
+        context = super().get_context_data(**kwargs)
+        context['profile'] = profile
+        return context
+
+
+    def form_valid(self, form):
+        form.instance.CustomUser = self.request.user
+        form.save()
+        return redirect('student:reg')
+
+           
+
 
 
 

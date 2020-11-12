@@ -582,15 +582,16 @@
 .cyan-sidebar-color .sidemenu-hover-submenu li:hover a>.arrow {
     border-right: 8px solid #fff;
 }
+
 /* Green sidebar color */
 .green-sidebar-color .sidemenu-container {
-    background-color: #3FCC7E;
+    background-color: #059740;
 }
 .green-sidebar-color .sidemenu-container .sidemenu>li.active.open>a,
 .green-sidebar-color .sidemenu-container .sidemenu>li.active>a,
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu>li.active.open>a,
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu>li.active>a {
-    background-color: #3fa961;
+    background-color: #059740;
     border-top-color: transparent;
     color: #fff;
 }
@@ -609,7 +610,7 @@
 .green-sidebar-color .sidemenu-container .sidemenu>li:hover>a, 
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu>li.open>a, 
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu>li:hover>a {
-    background-color: #3FCC7E;
+    background-color: #059740;
     color: #fff;
 }
 .green-sidebar-color .sidemenu-container .sidemenu>li.open>a>.arrow.open:before, 
@@ -628,7 +629,7 @@
 }
 .green-sidebar-color .sidemenu-container .sidemenu .sub-menu, 
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu .sub-menu{
-	    background-color: #3fa961;
+	    background-color: #059740;
 }
 .green-sidebar-color .sidemenu-container .sidemenu .sub-menu>li>a, 
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu .sub-menu>li>a{
@@ -657,7 +658,7 @@
 	color: #fff;
 }
 .green-sidebar-color .page-container{
-	background-color : #3FCC7E;
+	background-color : #059740;
 }
 .green-sidebar-color .sidemenu-container .sidemenu>li.heading>h3, 
 .green-sidebar-color .sidemenu-closed.sidemenu-container-fixed .sidemenu-container:hover .sidemenu>li.heading>h3{
@@ -753,6 +754,11 @@
     border-right: 8px solid #fff;
 }
 
+
+
+
+
+
 /***************** Logo Theme **********************/
 .logo-white .page-header.navbar .page-logo{
 	background: #ffffff;
@@ -776,8 +782,9 @@
 .logo-red .page-header.navbar .page-logo{
 	background: #E44F56
 }
+
 .logo-green .page-header.navbar .page-logo{
-	background: #3FCC7E;
+	background: #059740;
 }
 
 
@@ -1236,108 +1243,15 @@
     background: #44a8bd;
 }
 
-/* Header Red */
-.header-red .page-header.navbar{
-	background-color: #E44F56
-}
-.header-red form.search-form-opened .btn.submit {
-    color: #fff;
-}
-.header-red .search-form-opened input[type="text"]{
-	color:#fff;
-}
-.header-red form.search-form-opened {
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 0;
-}
-.header-red .page-header .search-form-opened .input-group .form-control::-moz-placeholder {
-    color: #efefef;
-    opacity: 1;
-}
-.header-red .page-header .search-form-opened .input-group .form-control:-ms-input-placeholder {
-    color: #efefef;
-    opacity: 1;
-}
-.header-red .page-header .search-form-opened .input-group .form-control::-webkit-input-placeholder {
-    color: #efefef;
-    opacity: 1;
-}
-.header-red .page-header.navbar .top-menu .navbar-nav>li.dropdown-language>.dropdown-toggle>.langname, 
-.header-red .page-header.navbar .top-menu .navbar-nav>li.dropdown-user>.dropdown-toggle>.username, 
-.header-red .page-header.navbar .top-menu .navbar-nav>li.dropdown-user>.dropdown-toggle>i{
-	color: #fff;
-}
-.header-red .page-header.navbar .top-menu .navbar-nav>li.dropdown .dropdown-toggle>i{
-	color: #fff;
-}
-.header-red .language-switch a{
-	color: #fff;
-}
-.header-red .menu-toggler i.icon-menu{
-	color: #ffffff;
-	font-size: 18px;
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.mega-menu-dropdown>.dropdown-menu .mega-menu-content .mega-menu-submenu li>h3,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li>a {
-    color: rgba(255, 255, 255, 0.8);
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li>a>i {
-    color: rgba(255, 255, 255, 0.8);
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.open>a,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li:hover>a,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li>a:hover {
-    color: #fff;
-    background: none !important;
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.open>a>i,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li:hover>a>i,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li>a:hover>i {
-    color: #fff;
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.active>a,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.current>a {
-    color: #fff;
-    background: none !important; 
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.active>a>i,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li.current>a>i {
-    color: #fff;
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu {
-    box-shadow: 5px 5px rgba(63, 79, 98, .2);
-    background: #b54b50;
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li>a,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li>a>i {
-    color: rgba(255, 255, 255, 0.8);
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li:hover>a {
-    color: #fff;
-   /*  background: #47596e; */
-}
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li.active>a,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li.active>a:hover,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li.current>a,
-.header-red .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li.current>a:hover {
-    color: #fff;
-    background: transparent;
-}
-.header-red .dropdown-menu>li.active:hover>a, 
-.header-red .dropdown-menu>li.active>a, 
-.header-red .dropdown-menu>li:hover>a{
-	background-color: transparent;
-}
-.header-red .language-switch a.dropdown-toggle{
-	color:#fff;
-}
-.header-red .navbar-custom {
-    background: #ce444b;
-}
+
+
+
+
+
 
 /* Header Green */
 .header-green .page-header.navbar{
-	background-color: #3FCC7E;
+	background-color: #059740;
 }
 .header-green form.search-form-opened .btn.submit {
     color: #fff;
@@ -1405,7 +1319,7 @@
 }
 .header-green .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu {
     box-shadow: 5px 5px rgba(63, 79, 98, .2);
-    background: #3fa961;
+    background: #059740;
 }
 .header-green .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li>a,
 .header-green .page-header.navbar .hor-menu .navbar-nav>li .dropdown-menu li>a>i {
@@ -1431,5 +1345,5 @@
 	color:#fff;
 }
 .header-green .navbar-custom {
-    background: #33b76e;
+    background: #059740;
 }
