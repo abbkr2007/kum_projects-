@@ -234,25 +234,32 @@ class Semester_View(generic.ListView):
 
 
 @method_decorator([login_required, sis_required], name='dispatch')
+
+
 class Course_Registration(generic.CreateView):
-    model = Choice_Course  
+    model = Registration_Course  
     template_name = 'test/reg.html'
-    form_class = RegForm
-    context_object_name = 'queryset'
+    
+
 
     def get_context_data(self, **kwargs):
         profile = Student.objects.filter(user=self.request.user)
         context = super().get_context_data(**kwargs)
         context['profile'] = profile
         return context
-
+    
 
     def form_valid(self, form):
-        form.instance.CustomUser = self.request.user
+        form.instance.user = self.request.user
         form.save()
-        return redirect('student:reg')
+        return HttpResponse("saved form")
 
            
+
+
+
+
+
 
 
 

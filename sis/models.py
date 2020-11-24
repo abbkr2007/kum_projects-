@@ -69,6 +69,8 @@ Current_STATUS = [
 
 
 
+
+
 class CurrentStatus(models.Model):
     student = models.ForeignKey(
         Student, on_delete=models.SET_NULL, null=True)
@@ -89,6 +91,8 @@ class CurrentStatus(models.Model):
         verbose_name_plural = 'CurrentStatuss'
 
         
+
+
 
 
 
@@ -189,22 +193,6 @@ class Semester(models.Model): # Course
         return reverse('student:program_detail', kwargs={
             'pk': self.pk
         })
-
-
-
-
-
-class Course_Registration(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
-    currentstatus = models.ForeignKey(CurrentStatus, related_name='student_course_reg', on_delete=models.SET_NULL, blank=True, null=True)
-
-    def __str__(self):
-        return str(self.student)
-
-
-
-
-
 
 
 
@@ -425,13 +413,7 @@ class Semester_3rd(models.Model):
 
 
 
-
-
-
-
-
-
-# you will be talking thoses course during your semesters......
+# student will be talking thoses course during his/her semesters......
 
 class Student_Course_Name(models.Model):                                              # 1 Program courses
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, blank=True, null=True)
@@ -454,14 +436,23 @@ class Choice_Course(models.Model): #list of courses show for student.....just sh
 
 
 
-# resgistrations Froms for course........                                    program1 registration
+# student will be talking thoses course during his/her semesters......
+
+
+
+
+
+# resgistrations Froms for course........     
+#                                program1 registration
+
+
 class Registration_Course(models.Model):
-    # course_by_student = models.ForeignKey(Choice_Course, on_delete=models.CASCADE, blank=True, null=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     course = models.ManyToManyField(Student_Course_Name, blank=True)
 
     def __str__(self):
-        return str(self.course)
+        return str(self.user)
 
 
 
@@ -502,15 +493,6 @@ class Registration_Course(models.Model):
 
 
 
-
-
-
-class Fine(models.Model):
-    q = models.ForeignKey(Student, on_delete=models.CASCADE, blank=True, null=True)
-    z = models.CharField ('Fine', max_length=100)
-
-    def __str__(self):
-        return self.z
 
 
 
