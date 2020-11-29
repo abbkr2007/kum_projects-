@@ -12,8 +12,12 @@ def home(request):
             return redirect('hr:profile')
         elif request.user.is_account:
             return redirect('ac:profile')
+        elif request.user.is_adm:
+            return redirect('adm:profile')
+        elif request.user.is_ad:
+            return redirect('ad:profile')
         elif request.user.is_superuser:
-            return HttpResponse('<a href="http://127.0.0.1:8000/admin/">Yes, Please</a>')
+            return HttpResponse('<a href="http://127.0.0.1:8000/admin/">Admin Dashborad</a>')
         else:
             return redirect('account_login')
 

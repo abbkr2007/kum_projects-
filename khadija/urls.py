@@ -4,6 +4,8 @@ from django.contrib import admin
 from sis.admin import sis_admin_site  
 from django.urls import path, include
 
+
+
 urlpatterns = [
 
    
@@ -19,6 +21,7 @@ urlpatterns = [
     path('hr/', include('hr.urls', namespace='hr')),
     path('account/', include('accounts.urls', namespace='ac')),
     path('adm/', include('adm.urls', namespace='adm')),
+    path('ad/', include('ad.urls', namespace='ad')),
 
   
     # third party pakage for auth
@@ -53,6 +56,8 @@ if settings.DEBUG:
 admin.site.site_header = "KHADIJA UNIVERSITY"
 admin.site.site_title = "Uiversity Admin Portal"
 admin.site.index_title = "Welcome to KHADIJA UINIVERSITY Portal"
+
+
 
 sis_admin_site.site_header = "KHADIJA UNIVERSITY"
 sis_admin_site.site_title = "SIS Admin Portal"

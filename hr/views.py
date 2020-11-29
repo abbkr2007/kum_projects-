@@ -60,6 +60,7 @@ class Student_Search(generic.View):
 
 
 @method_decorator([login_required, hr_required], name='dispatch')
+
 class Lecturer_Search(generic.View):
     
     def get(self, request, *args, **kwargs):

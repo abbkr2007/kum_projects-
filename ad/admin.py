@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Ad_Profile
+
+
+
+admin.site.register(Ad_Profile)

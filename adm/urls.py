@@ -9,6 +9,7 @@ app_name = 'adm'
 
 urlpatterns = [
 
+    path('profile/',views.Adm_profile.as_view(), name='profile'),
     path('admform/',views.Adm_View.as_view(), name='admform'),
   
 

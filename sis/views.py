@@ -302,3 +302,4 @@ def message_view(request):
             return redirect('student:message')
 
 
+

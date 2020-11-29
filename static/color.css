@@ -173,3 +173,10 @@ h1 {
     font-size: 20px;
     color: #000000;
 }
+
+
+.admin {
+    margin: 10px;
+    padding-top: 10px;
+    text-align: left;
+}

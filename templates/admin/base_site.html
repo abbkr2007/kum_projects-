@@ -10,8 +10,26 @@
 {% endblock %}
 <h1 id="site-name">
 <a href="{% url 'admin:index' %}">
+     
 <img src="{% static 'kdj_uni.png' %}" height="90px" />
 </a>
 </h1>
+<br>
 {% endblock %}
+
+{% block link %}
+<div class="admin">
+     <h3>
+
+          <a style="color: blue;" href="{% url 'sis_admin:index' %}">SIS portal</a>-
+
+          <a style="color: blue;" href="{% url 'sis_admin:index' %}">AC portal</a>-
+          <a style="color: skyblue;" href="{% url 'sis_admin:index' %}">AC portal</a>-
+          <a style="color: darkred;" href="{% url 'sis_admin:index' %}">AC portal</a>-
+          <a style="color: darkred;" href="{% url 'sis_admin:index' %}">AC portal</a>-
+
+     </h3>
+     
+</div>
+{% endblock link %}
 {% block nav-global %}{% endblock %}

@@ -68,9 +68,6 @@ Current_STATUS = [
   ]
 
 
-
-
-
 class CurrentStatus(models.Model):
     student = models.ForeignKey(
         Student, on_delete=models.SET_NULL, null=True)
@@ -91,11 +88,6 @@ class CurrentStatus(models.Model):
         verbose_name_plural = 'CurrentStatuss'
 
         
-
-
-
-
-
 class SessionYearModel(models.Model):
     session_start_year = models.DateField()
     session_end_year = models.DateField()
@@ -130,7 +122,7 @@ class Department(models.Model):
     code = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
+        return self.name  
 
     class Meta:
         db_table = ''
@@ -410,9 +402,6 @@ class Semester_3rd(models.Model):
 
 
 
-
-
-
 # student will be talking thoses course during his/her semesters......
 
 class Student_Course_Name(models.Model):                                              # 1 Program courses
@@ -440,11 +429,7 @@ class Choice_Course(models.Model): #list of courses show for student.....just sh
 
 
 
-
-
-# resgistrations Froms for course........     
-#                                program1 registration
-
+# resgistrations Froms for course........ # program1 registration
 
 class Registration_Course(models.Model):
     user = models.ForeignKey(
