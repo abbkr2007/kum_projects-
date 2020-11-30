@@ -579,13 +579,13 @@ h4.vew-mail-header b {
     position: relative;
 }
 .user-bg .overlay-box {
-    background: #9675ce;
+    background: #ffffff;
     opacity: .9;
     top: 0;
     left: 0;
     right: 0;
     height: 100%;
-    text-align: center;
+    /* text-align: center; */
 }
 .user-bg .overlay-box .user-content {
     padding: 15px;

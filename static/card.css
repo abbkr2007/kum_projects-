@@ -1,0 +1,127 @@
+
+
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  background: #222;
+}
+
+.text {
+  display: block;
+  /* margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px; */
+  font-size: 12px;
+  letter-spacing: 0;
+  margin: 0px 10px -5px;
+}
+
+.dow {
+  position: sticky;
+  left: 25px;
+  font-size: 14px;
+}
+
+
+.left {
+  left: 25px;
+}
+
+
+.center {
+  text-align: center;
+}
+
+
+.bottom {
+  position: absolute;
+  bottom: 12px;
+}
+
+#card {
+  position: absolute;
+  width: 340px;
+  height: 220px;
+  padding-top: 0;
+  padding-bottom: 0;
+  left: 50%;
+  top: 67.5px;
+  margin-left: -250px;
+  background: #f1f1f1;
+  box-shadow: -20px 0 35px -25px #ffffff, 20px 0 35px -25px #ffffff;
+  border-radius: 15px;
+}
+
+.image img {
+  width: 100px;
+  height: 100px;
+  float: left;
+  border-radius: 5px;
+  margin-right: 20px;
+
+  padding: 10px;
+
+}
+
+.log img {
+  width: 330px;
+  height: 50px;
+
+  /* border-radius: 15px; */
+  margin-right: 20px;
+}
+
+/* #card img {
+  width: 100px;
+  height: 100px;
+  float: left;
+  border-radius: 5px;
+  margin-right: 20px;
+
+  padding: 10px;
+} */
+
+#card h2 {
+  padding: 2px;
+  font-family: ui-monospace;
+  color: rgb(255, 255, 255);
+  margin: 0 auto;
+  /* padding: 5px; */
+  font-size: 17pt;
+  text-align: center;
+}
+#card p {
+  font-family:system-ui;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+}
+
+#card span {
+  font-family: system-ui;
+  left: 25px;
+  font-size: 14px;
+}
+
+.profile-card-header {
+  /* padding-left: 25px; */
+  /* padding-right: 20px; */
+  width: 100%;
+  background: #084563;
+  -webkit-border-top-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  border-top-left-radius: 12px;
+  -webkit-border-top-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  border-top-right-radius: 12px;
+}
+
+.profile-card-container {
+  -webkit-box-shadow: 1px 2px 0 0 rgba(84,79,79,.4), 3px 4px 1px rgba(128,128,128,.25);
+  -moz-box-shadow: 1px 2px 0 0 rgba(84,79,79,.4),3px 4px 1px rgba(128,128,128,.25);
+  box-shadow: 1px 2px 0 0 rgba(84,79,79,.4), 3px 4px 1px rgba(128,128,128,.25);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}

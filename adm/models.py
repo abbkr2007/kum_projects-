@@ -3,10 +3,6 @@ from django.db import models
 from sis.models import *
 
 
-from .randomm import create_new_ref_number
-
-
-
 STATUS = [
       ('active', 'Active'),
       ('inactive', 'Inactive')
@@ -69,15 +65,15 @@ GENDER = [
 
    ]
 class Admission(models.Model):
-    faculty = models.ForeignKey(to='sis.Faculty', related_name='adm_faculty', on_delete=models.CASCADE)
-    dept = models.ForeignKey(to='sis.Department', related_name='adm_department', on_delete=models.CASCADE)
-    registration_No= models.CharField(
-           max_length = 11,
-           blank=True,
-           null=True,
-           unique=True,
-           default=create_new_ref_number()
-      )
+    # faculty = models.ForeignKey(to='sis.Faculty', related_name='adm_faculty', on_delete=models.CASCADE)
+    # dept = models.ForeignKey(to='sis.Department', related_name='adm_department', on_delete=models.CASCADE)
+    # registration_No= models.CharField(
+    #        max_length = 11,
+    #        blank=True,
+    #        null=True,
+    #        unique=True,
+    #        default=create_new_ref_number()
+    #   )
       
     first_name = models.CharField(max_length=40)
     middle_name = models.CharField(max_length=40)

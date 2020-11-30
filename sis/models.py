@@ -4,6 +4,9 @@ from django.conf import settings
 from django.urls import reverse
 from django.db.models import Sum
 from django.db.models import Count
+from pis.models import Lecturer
+
+from .randomm import create_new_ref_number
 
 STATUS = [
       ('active', 'Active'),
@@ -19,8 +22,17 @@ GENDER = [
 class Student(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    faculty = models.ForeignKey(to='Faculty', related_name='sis_faculty', on_delete=models.CASCADE, null=True, blank=True)
+    dept = models.ForeignKey(to='Department', related_name='sis_department', on_delete=models.CASCADE, null=True, blank=True)
+    registration_No= models.CharField(
+           max_length = 11,
+           blank=True,
+           null=True,
+           unique=True,
+           default=create_new_ref_number()
+      )
+      
     status = models.CharField(max_length=10, choices=STATUS, default='active')
-    registration_number = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=40)
     middle_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40, blank=True)
@@ -69,14 +81,10 @@ Current_STATUS = [
 
 
 class CurrentStatus(models.Model):
-    student = models.ForeignKey(
-        Student, on_delete=models.SET_NULL, null=True)
+    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True)
     current_status = models.CharField(max_length=10, choices=Current_STATUS)
-    faculty = models.ForeignKey('Faculty', related_name='student_curent_faculty', on_delete=models.SET_NULL, blank=True, null=True)
-    dept = models.ForeignKey('Department', related_name='student_curent_department', on_delete=models.SET_NULL, blank=True, null=True)
-    program = models.ForeignKey('Program', related_name='student_curent_program', on_delete=models.SET_NULL, blank=True, null=True)
-    semester = models.ForeignKey('Semester', related_name='student_courent_semester', on_delete=models.SET_NULL, blank=True, null=True)
-    
+    advisor = models.ForeignKey('pis.Lecturer', related_name='currentstatus', on_delete=models.SET_NULL, null=True)
+   
 
     def __str__(self):
         return self.current_status

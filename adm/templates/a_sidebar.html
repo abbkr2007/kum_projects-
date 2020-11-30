@@ -64,22 +64,29 @@
 
 
                 <li class="nav-item">
-                    <a href="{% url 'hr:list_of_lecturer' %}" class="nav-link nav-toggle"> <i class="material-icons">account_circle</i>
+                    <a href="{% url 'adm:profile' %}" class="nav-link nav-toggle"> <i class="material-icons">account_circle</i>
                         <span class="title">Profile</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{% url 'adm:admform' %}" class="nav-link nav-toggle"> <i class="material-icons">person</i>
                         <span class="title">Add Student</span>
                     </a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="{% url 'adm:add_student' %}" class="nav-link nav-toggle"><i class="material-icons">group</i>
+                        <span class="title">Add Student</span>
+                    </a>
+
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'hr:list_of_student' %}" class="nav-link nav-toggle"><i class="material-icons">group</i>
+                    <a href="{% url 'adm:list_of_student' %}" class="nav-link nav-toggle"><i class="material-icons">group</i>
                         <span class="title">Students List</span>
                     </a>
 
                 </li>
+           
 
                 <!-- <li class="nav-item">
                     <a href="{% url 'hr:select_sub_teacher' %}" class="nav-link nav-toggle"> <i class="material-icons">check_box</i>

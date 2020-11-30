@@ -15,11 +15,11 @@ sis_admin_site = SIS_Admin_Site(name='sis_admin')
 
 # Model register....
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('get_name', 'registration_number', 'status', 'gender', 'phone', 'email')
+    list_display = ('get_name', 'registration_No', 'status', 'gender', 'phone', 'email')
     list_filter = ('status',)
-    search_fields = ('registration_number',)
+    search_fields = ('registration_No',)
 
-sis_admin_site.register(Student, StudentAdmin)
+sis_admin_site.register(Student, StudentAdmin) 
 
 # sis_admin_site.register(CurrentStatus)
 
@@ -44,6 +44,9 @@ class CoursesAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 sis_admin_site.register(Courses, CoursesAdmin)
+
+
+sis_admin_site.register(CurrentStatus)
 
 
 

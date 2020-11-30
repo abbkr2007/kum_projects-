@@ -1,0 +1,187 @@
+
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/ui_tabs_accordions_navs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:34:08 GMT -->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+	<link href="{% static 'fonts/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'fonts/material-design-icons/material-icon.css' %}" rel="stylesheet" type="text/css" />
+	<!--bootstrap -->
+
+	<link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static 'card.css' %}" type="text/css" />
+	<!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="{% static 'assets/plugins/material/material.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/material_style.css' %}">
+	<!-- Theme Styles -->
+	<link href="{% static 'assets/css/theme/light/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/style.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'assets/css/theme/light/theme-color.css' %}" rel="stylesheet" type="text/css" />
+
+	<!-- favicon -->
+
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+	<div class="page-wrapper">
+		<!-- start header -->
+       {% include "base/header.html" %}
+		<!-- end header -->
+	
+		<!-- start page container -->
+		<div class="page-container">
+		{% include "ad_sidebar.html" %}
+			<!-- start page content -->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<div class="page-bar">
+						<div class="page-title-breadcrumb">
+							<div class=" pull-left">
+								<div class="page-title">Tabs &amp; Accordions</div>
+							</div>
+							<ol class="breadcrumb page-breadcrumb pull-right">
+								<li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+										href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+								</li>
+								<li><a class="parent-item" href="#">UI Elements</a>&nbsp;<i
+										class="fa fa-angle-right"></i>
+								</li>
+								<li class="active">Tabs &amp; Accordions</li>
+							</ol>
+						</div>
+					</div>
+					
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div style="padding-left: 280px;">
+            <div class="card-body no-padding height-9">
+                
+                <div class="row">
+    
+                    </ul><div class="slimScrollBar" style="background: rgb(158, 165, 171); width: 5px; position: absolute; top: 41px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 417.831px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                    <div class="box-footer chat-box-submit">
+                        <form action="{% url 'ad:generate_card' %}" method="GET">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" name="q" placeholder="Registration No/Email" class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-warning btn-flat"><i class="fa fa-arrow-right"></i></button>
+                                </span> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  
+     
+					<div class="row">
+                        {% if queryset %}
+
+                        {% for student in queryset  %}
+                          
+                   
+                        <div style="padding-left: 300px;">
+                            <div class="white-box border-gray">
+                                
+                                <div class="user-bg">
+                                    <div class="overlay-box">
+                                        <div class="user-content">
+                                                                            
+                                                <div class="log">
+                                                    <img src="{% static 'kdj_uni.png' %}" alt="">
+                                                </div>
+                                                
+                                                <div class="image">
+                                                
+                                                    <img src="{{student.image.url}}" alt="">
+                                                
+                                                </div>
+        
+                                                <div style="margin: 10px;">
+                                            <p class="text"><b> Name:</b>   &nbsp; {{student.get_name}}</p>
+                                            <p class="text"><b>Gender:</b>  &nbsp; {{student.gender}}</p>
+                                            <p class="text" ><b>Enrol:</b> &nbsp; {{student.date_of_admission}}</p>
+                                            <p class="text" ><b>Advior:</b> &nbsp; Abu Bakar</p>
+                                            <p class="text" ><b>Status:</b> &nbsp; Studying</p>
+                                           
+                                    
+                                
+                                            </div>
+                                            
+                
+            
+                <b> <span class="dow"> Student ID: <br> {{student.registration_No}} </span><br> </b>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        {% else %}
+
+<p style="color: red;">
+    Please provide vaild Registration No / Email
+    
+</p>
+                    {% endif %}
+            
+            
+            </div>
+            
+    </div>
+ 
+</div>
+
+
+	<!-- start js include path -->
+	<script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/popper/popper.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-blockui/jquery.blockui.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js' %}"></script>
+	<!-- Common js-->
+	<script src="{% static 'assets/js/app.js' %}"></script>
+	<script src="{% static 'assets/js/layout.js' %}"></script>
+	<script src="{% static 'assets/js/theme-color.js' %}"></script>
+	<!-- Material -->
+	<script src="{% static 'assets/plugins/material/material.min.js' %}"></script>
+	<!-- end js include path -->
+</body>
+
+
+<!-- Mirrored from radixtouch.in/templates/admin/smart/source/light/ui_tabs_accordions_navs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Feb 2019 02:34:08 GMT -->
+</html>

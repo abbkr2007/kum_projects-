@@ -12,29 +12,29 @@ class DateInput(forms.DateInput):
 
 # Student's Forms
 
-class Student_Profile_Edit_Form(forms.ModelForm):
+# class Student_Profile_Edit_Form(forms.ModelForm):
 
-    class Meta:
-        model = Student
-        fields = '__all__'
-        # exclude = ['user', 'image']
+#     class Meta:
+#         model = Student
+#         fields = '__all__'
+#         # exclude = ['user', 'image']
         
-        widgets = {
-            'date_of_birth':DateInput(),
-            'date_of_admission': DateInput(),
+#         widgets = {
+#             'date_of_birth':DateInput(),
+#             'date_of_admission': DateInput(),
 
-        }
+#         }
 
-class Student_Create_Form(forms.ModelForm):
+# class Student_Create_Form(forms.ModelForm):
 
-    class Meta:
-        model = Student
-        fields = '__all__'
-        widgets = {
-            'date_of_birth':DateInput(),
-            'date_of_admission': DateInput(),
+#     class Meta:
+#         model = Student
+#         fields = '__all__'
+#         widgets = {
+#             'date_of_birth':DateInput(),
+#             'date_of_admission': DateInput(),
 
-        }
+#         }
 
 
 
@@ -147,6 +147,8 @@ class Notice_Create_Form_Edit(forms.ModelForm):
         model = Notice_of_lecturer
         fields = '__all__'
   
+
+
 
 # notice forms for student
 

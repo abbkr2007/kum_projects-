@@ -1,4 +1,6 @@
+
 {% load static %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +50,7 @@
 		<!-- start page container -->
 		<div class="page-container">
 			<!-- start sidebar menu -->
-		{% include "h_sidebar.html" %}
+		{% include "a_sidebar.html" %}
 			<!-- end sidebar menu -->
 			<!-- start page content -->
 			<div class="page-content-wrapper">
@@ -79,27 +81,39 @@
 											<div class="col-md-12">
 												<div class="card card-box">
 													<div class="card-head">
-														<header>Search Resutls</header>
+														<header>All Professors</header>
 													
 													</div>
 													<div class="card-body ">
 														<div class="row">
-												
+															<div class="col-md-6 col-sm-6 col-6">
+																<div class="btn-group">
+																	<a href="{% url 'adm:add_student' %}" id="addRow"
+																		class="btn btn-info">
+																		Add New <i class="fa fa-plus"></i>
+																	</a>
+																</div>
+															</div>
+										
 														</div>
+
+												
+
 														<div class="table-scrollable">
 
-															<form class="search-form-opened" action="{% url 'hr:search_student' %}">
-																{% csrf_token %}
-																<div class="input-group">
-																	<input type="text" class="form-control" placeholder="Reg: / Email....." name="q">
-																	<span class="input-group-btn">
-																		<a href="javascript:;" class="btn submit">
-																			<i class="icon-magnifier"></i>
-																		</a>
-																	</span>
-																</div>
-															</form> <br>
-															<p></p><br>
+														<form class="search-form-opened" action="{% url 'adm:search_student' %}">
+															{% csrf_token %}
+															<div class="input-group">
+																<input type="text" class="form-control" placeholder="Reg: / Email....." name="q">
+																<span class="input-group-btn">
+																	<a href="javascript:;" class="btn submit">
+																		<i class="icon-magnifier"></i>
+																	</a>
+																</span>
+															</div>
+														</form> <br>
+														<p></p><br>
+																
 														
 															<table
                                                                 class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
@@ -121,8 +135,7 @@
                                                                 
 
 																<tbody>
-																		{% if queryset %}
-																
+
                                                                     {% for student in queryset  %}
                                                                       
                                                         
@@ -132,7 +145,7 @@
 																				alt="">
 																		</td>
 																		<td>{{student.get_name}}</td>
-																		<td class="left"><a href="{{student.get_absolute_url}}">{{student.registration_number}}</a></td>
+																		<td class="left"><a href="{% url 'adm:student_about' student.pk %}">{{student.registration_No}}</a></td>
 																		<td class="left">{{student.dept}}</td>
 																		<td class="left">{{student.gender}}</td>
 																		<td><a href="tel:{{studnet.phone}}">
@@ -141,7 +154,7 @@
 																				{{student.email}} </a></td>
 																		<td class="left">{{student.date_of_admission}}</td>
 																		<td>
-																			<a href="{% url 'hr:student_edit' student.pk %}"
+																			<a href="{% url 'adm:student_edit' student.pk %}"
 																				class="btn btn-primary btn-xs">
 																				<i class="fa fa-pencil"></i>
 																			</a>
@@ -150,16 +163,7 @@
 																			</button>
 																		</td>
                                                                     </tr>
-																	{% endfor %}
-																	
-																	
-                                                                    {% else %}
-
-                                                                
-                                                                <h3 style="color: red;">We haven't found 
-                                                                    <b> Student </b> Based on Your Search</h3></b> 
-                                                                         
-                                                                    {% endif %}
+                                                                    {% endfor %}
 
 																</tbody>
 															</table>
